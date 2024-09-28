@@ -36,6 +36,7 @@ body {
 .tab {
   overflow: hidden;
   background-color: #f1f1f1;
+  margin-top: 20px;
 }
 
 .tab button {
@@ -74,26 +75,31 @@ body {
   <p>Some content..</p>
 </div>
 
-<!-- Tabs for Labs -->
-<div class="tab">
-  <button class="tablinks" onclick="openLab(event, 'Lab1')">Lab1</button>
-  <button class="tablinks" onclick="openLab(event, 'Lab2')">Lab2</button>
-  <button class="tablinks" onclick="openLab(event, 'Lab3')">Lab3</button>
-</div>
+<!-- Section for Labs, directly accessible from navigation -->
+<div id="labs" style="padding-left:16px; margin-top:50px;">
+  <h2>Labs Section</h2>
+  
+  <!-- Tabs for Labs -->
+  <div class="tab">
+    <button class="tablinks" onclick="openLab(event, 'Lab1')">Lab1</button>
+    <button class="tablinks" onclick="openLab(event, 'Lab2')">Lab2</button>
+    <button class="tablinks" onclick="openLab(event, 'Lab3')">Lab3</button>
+  </div>
 
-<div id="Lab1" class="tabcontent">
-  <h3>Lab 1</h3>
-  <p>Nội dung Lab 1.</p>
-</div>
+  <div id="Lab1" class="tabcontent">
+    <h3>Lab 1</h3>
+    <p>Nội dung Lab 1.</p>
+  </div>
 
-<div id="Lab2" class="tabcontent">
-  <h3>Lab 2</h3>
-  <p>Nội dung Lab 2.</p>
-</div>
+  <div id="Lab2" class="tabcontent">
+    <h3>Lab 2</h3>
+    <p>Nội dung Lab 2.</p>
+  </div>
 
-<div id="Lab3" class="tabcontent">
-  <h3>Lab 3</h3>
-  <p>Nội dung Lab 3.</p>
+  <div id="Lab3" class="tabcontent">
+    <h3>Lab 3</h3>
+    <p>Nội dung Lab 3.</p>
+  </div>
 </div>
 
 <script>
