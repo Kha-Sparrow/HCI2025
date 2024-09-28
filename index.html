@@ -68,7 +68,7 @@ body {
 <div class="topnav">
   <a class="active" href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#labs">Labs</a>
+  <a href="#labs" onclick="openLab(event, 'Lab1')">Labs</a>
 </div>
 
 <div style="padding-left:16px">
@@ -116,6 +116,11 @@ function openLab(evt, labName) {
   document.getElementById(labName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+// Mặc định hiển thị Lab1 khi tải trang
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector(".tablinks").click();
+});
 </script>
 
 </body>
