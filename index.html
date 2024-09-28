@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Khóa học</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function confirmDelete() {
+            return confirm('Bạn có chắc chắn muốn xóa khóa học này không?');
+        }
+    </script>
 </head>
+
 <body>
 
     <!-- Trang Danh sách Khóa học -->
@@ -33,7 +40,7 @@
                     <td>2024-01-10</td>
                     <td>
                         <button onclick="window.location.href='edit.html'">Chỉnh sửa</button>
-                        <button onclick="confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</button>
+                        <button onclick="return confirmDelete()">Xóa</button>
                     </td>
                 </tr>
             </tbody>
@@ -41,28 +48,29 @@
     </div>
 
     <!-- Trang Tạo Khóa học -->
-    <div class="container">
+    <div class="container" id="create">
         <h1>Tạo Khóa học Mới</h1>
-        <form>
+        <form id="courseForm">
             <label for="course_id">ID Khóa học:</label>
             <input type="text" id="course_id" name="course_id" readonly value="1">
-            
+
             <label for="course_name">Tên Khóa học *</label>
             <input type="text" id="course_name" name="course_name" required maxlength="255">
-            
+
             <label for="course_description">Mô tả Khóa học</label>
             <textarea id="course_description" name="course_description" rows="4"></textarea>
-            
+
             <label for="instructor">Giảng viên *</label>
             <select id="instructor" name="instructor" required>
                 <option value="">Chọn Giảng viên</option>
                 <option value="instructor1">Nguyễn Văn A</option>
                 <option value="instructor2">Trần Thị B</option>
+                <!-- Thêm các giảng viên khác tại đây -->
             </select>
 
             <label for="created_at">Ngày Tạo:</label>
             <input type="text" id="created_at" name="created_at" readonly value="2024-01-01">
-            
+
             <label for="updated_at">Ngày Cập nhật:</label>
             <input type="text" id="updated_at" name="updated_at" readonly value="2024-01-01">
 
@@ -72,27 +80,28 @@
     </div>
 
     <!-- Trang Chỉnh sửa Khóa học -->
-    <div class="container">
+    <div class="container" id="edit">
         <h1>Chỉnh sửa Khóa học</h1>
-        <form>
+        <form id="editForm">
             <label for="course_id">ID Khóa học:</label>
             <input type="text" id="course_id" name="course_id" readonly value="1">
-            
+
             <label for="course_name">Tên Khóa học *</label>
             <input type="text" id="course_name" name="course_name" required maxlength="255">
-            
+
             <label for="course_description">Mô tả Khóa học</label>
             <textarea id="course_description" name="course_description" rows="4"></textarea>
-            
+
             <label for="instructor">Giảng viên *</label>
             <select id="instructor" name="instructor" required>
                 <option value="instructor1">Nguyễn Văn A</option>
                 <option value="instructor2">Trần Thị B</option>
+                <!-- Thêm các giảng viên khác tại đây -->
             </select>
 
             <label for="created_at">Ngày Tạo:</label>
             <input type="text" id="created_at" name="created_at" readonly value="2024-01-01">
-            
+
             <label for="updated_at">Ngày Cập nhật:</label>
             <input type="text" id="updated_at" name="updated_at" readonly value="2024-01-10">
 
@@ -102,7 +111,7 @@
     </div>
 
     <!-- Trang Xem Chi tiết Khóa học -->
-    <div class="container">
+    <div class="container" id="view">
         <h1>Chi tiết Khóa học</h1>
         <p><strong>ID Khóa học:</strong> 1</p>
         <p><strong>Tên Khóa học:</strong> Khóa học HTML</p>
@@ -112,9 +121,10 @@
         <p><strong>Ngày Cập nhật:</strong> 2024-01-10</p>
 
         <button onclick="window.location.href='edit.html'">Chỉnh sửa Khóa học</button>
-        <button onclick="confirm('Bạn có chắc chắn muốn xóa không?')">Xóa Khóa học</button>
+        <button onclick="return confirmDelete()">Xóa Khóa học</button>
         <button onclick="window.location.href='index.html'">Quay lại</button>
     </div>
 
 </body>
+
 </html>
