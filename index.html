@@ -128,31 +128,34 @@
         <div id="home" class="home active">
             <h2>Welcome to the Student Coding Platform</h2>
             <p>This is a platform to practice coding in various programming languages.</p>
+            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- About Section -->
         <div id="about" class="about">
             <h2>About</h2>
             <p>This platform allows students to solve coding exercises, get feedback, and improve their coding skills.</p>
+            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Lab1 Section -->
         <div id="lab1" class="lab">
             <h2>Lab 1 Exercises</h2>
             <p>This section contains exercises for Lab 1.</p>
-            <!-- Add lab-specific content here -->
+            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Lab2 Section -->
         <div id="lab2" class="lab">
             <!-- Đã loại bỏ tiêu đề và nút -->
+            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Lab3 Section -->
         <div id="lab3" class="lab">
             <h2>Lab 3 Exercises</h2>
             <p>This section contains exercises for Lab 3.</p>
-            <!-- Add lab-specific content here -->
+            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Dashboard Section -->
@@ -224,11 +227,12 @@
         const exerciseList = document.getElementById('exerciseList');
         const clearCodeButton = document.getElementById('clearCode');
         const submitCodeButton = document.getElementById('submitCode');
+        const runCodeButton = document.getElementById('runCode');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
 
         loginForm.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent form submission
             loginSection.classList.remove('active');
             tabMenu.style.display = 'block';
             openTab(event, 'home'); // Open home tab by default
@@ -237,7 +241,7 @@
         selectExerciseButton.addEventListener('click', function () {
             dashboardSection.classList.remove('active');
             codingSection.classList.add('active');
-            const selectedExercise = document.querySelector('.exercise');
+            const selectedExercise = document.querySelector('.exercise:visible');
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
         });
@@ -280,6 +284,21 @@
 
             if (tabName === 'lab2') {
                 dashboardSection.classList.add('active'); // Show dashboard when Lab2 is selected
+            }
+        }
+
+        function goBack() {
+            // Quay lại tab trước đó
+            const tabs = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tabs.length; i++) {
+                if (tabs[i].classList.contains("active")) {
+                    const currentTab = tabs[i].textContent.toLowerCase();
+                    if (currentTab === 'home') {
+                        openTab(event, 'about'); // Ví dụ quay lại About nếu đang ở Home
+                    } else {
+                        openTab(event, 'home'); // Quay lại Home
+                    }
+                }
             }
         }
     </script>
