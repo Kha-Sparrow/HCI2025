@@ -28,7 +28,7 @@
         .login.active, .dashboard.active, .coding-environment.active {
             display: block;
         }
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], input[type="search"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -104,6 +104,10 @@
                     <option value="java">Java</option>
                 </select>
             </div>
+            <div>
+                <label for="search">Search by keyword: </label>
+                <input type="search" id="search" placeholder="Search exercises...">
+            </div>
             <div id="exerciseList">
                 <!-- Exercises will be displayed here -->
                 <div class="exercise" data-language="c">
@@ -152,6 +156,7 @@
         const codingSection = document.getElementById('codingSection');
         const selectExerciseButton = document.getElementById('selectExercise');
         const filterSelect = document.getElementById('filter');
+        const searchInput = document.getElementById('search');
         const exerciseList = document.getElementById('exerciseList');
         const runCodeButton = document.getElementById('runCode');
         const clearCodeButton = document.getElementById('clearCode');
@@ -183,6 +188,23 @@
             Array.from(exercises).forEach(exercise => {
                 const language = exercise.getAttribute('data-language');
                 if (selectedLanguage === 'all' || language === selectedLanguage) {
+                    exercise.style.display = '';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
+        });
+
+        // Search exercises by keyword
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const exercises = exerciseList.getElementsByClassName('exercise');
+
+            Array.from(exercises).forEach(exercise => {
+                const title = exercise.querySelector('h3').textContent.toLowerCase();
+                const description = exercise.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
                     exercise.style.display = '';
                 } else {
                     exercise.style.display = 'none';
