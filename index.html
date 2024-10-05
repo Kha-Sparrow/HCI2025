@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and Dashboard</title>
+    <title>Student Coding Platform</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            margin: 0;
+            padding: 0;
         }
         .container {
-            width: 100%;
             max-width: 1000px;
-            margin: 0 auto;
-        }
-        .hidden {
-            display: none;
-        }
-        .login-container, .dashboard-container {
-            background-color: #fff;
+            margin: 50px auto;
             padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
             text-align: center;
         }
-        .dashboard-container {
-            width: 1000px;
+        .login, .dashboard, .coding-environment {
+            display: none;
+        }
+        .login.active, .dashboard.active, .coding-environment.active {
+            display: block;
         }
         input[type="text"], input[type="password"] {
             width: 100%;
@@ -40,8 +36,7 @@
             border-radius: 4px;
         }
         button {
-            width: 100%;
-            padding: 10px;
+            padding: 10px 20px;
             background-color: #5cb85c;
             color: white;
             border: none;
@@ -51,45 +46,43 @@
         button:hover {
             background-color: #4cae4c;
         }
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
         .exercise {
-            background-color: #f9f9f9;
-            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
             margin: 10px 0;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .exercise-info {
-            flex-grow: 1;
         }
         .difficulty {
             padding: 5px 10px;
-            border-radius: 5px;
+            border-radius: 4px;
+            color: white;
         }
         .easy {
             background-color: #5cb85c;
-            color: white;
         }
         .medium {
             background-color: #f0ad4e;
-            color: white;
         }
         .hard {
             background-color: #d9534f;
-            color: white;
+        }
+        .editor, .test-cases {
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <!-- Login Section -->
-        <div id="loginContainer" class="login-container">
+        <div class="login active" id="loginSection">
             <h2>Login</h2>
             <form id="loginForm">
                 <input type="text" id="username" placeholder="Username/Email" required>
@@ -100,55 +93,130 @@
         </div>
 
         <!-- Dashboard Section -->
-        <div id="dashboardContainer" class="dashboard-container hidden">
+        <div class="dashboard" id="dashboardSection">
             <h2>Available Exercises</h2>
-
-            <div class="exercise">
-                <div class="exercise-info">
-                    <h3>Exercise 1: Basic C Program</h3>
+            <div>
+                <label for="filter">Filter by language: </label>
+                <select id="filter">
+                    <option value="all">All</option>
+                    <option value="c">C</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                </select>
+            </div>
+            <div id="exerciseList">
+                <!-- Exercises will be displayed here -->
+                <div class="exercise" data-language="c">
+                    <h3>Basic C Program</h3>
                     <p>Write a simple C program to calculate the sum of two numbers.</p>
-                    <small>Time limit: 15 minutes</small>
+                    <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
                 </div>
-                <span class="difficulty easy">Easy</span>
-            </div>
-
-            <div class="exercise">
-                <div class="exercise-info">
-                    <h3>Exercise 2: Python Loops</h3>
+                <div class="exercise" data-language="python">
+                    <h3>Python Loops</h3>
                     <p>Create a Python program using loops to print the first 10 prime numbers.</p>
-                    <small>Time limit: 20 minutes</small>
+                    <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
                 </div>
-                <span class="difficulty medium">Medium</span>
+                <div class="exercise" data-language="java">
+                    <h3>Java OOP Concepts</h3>
+                    <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
+                    <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
+                </div>
+            </div>
+            <button id="selectExercise">Select Exercise</button>
+        </div>
+
+        <!-- Coding Environment Section -->
+        <div class="coding-environment" id="codingSection">
+            <h2>Exercise: <span id="exerciseTitle"></span></h2>
+            <p id="exerciseDescription"></p>
+
+            <div class="editor">
+                <h3>Code Editor</h3>
+                <textarea id="codeEditor">// Start coding here...</textarea>
+                <button id="runCode">Run Code</button>
+                <button id="clearCode">Clear Code</button>
+                <button id="submitCode">Submit Code</button>
             </div>
 
-            <div class="exercise">
-                <div class="exercise-info">
-                    <h3>Exercise 3: Java OOP Concepts</h3>
-                    <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
-                    <small>Time limit: 30 minutes</small>
-                </div>
-                <span class="difficulty hard">Hard</span>
+            <div class="test-cases">
+                <h3>Test Cases</h3>
+                <p id="testCaseResults">No test cases run yet.</p>
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Lấy thông tin từ form
+        const loginForm = document.getElementById('loginForm');
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const codingSection = document.getElementById('codingSection');
+        const selectExerciseButton = document.getElementById('selectExercise');
+        const filterSelect = document.getElementById('filter');
+        const exerciseList = document.getElementById('exerciseList');
+        const runCodeButton = document.getElementById('runCode');
+        const clearCodeButton = document.getElementById('clearCode');
+        const submitCodeButton = document.getElementById('submitCode');
+        const codeEditor = document.getElementById('codeEditor');
+        const exerciseTitle = document.getElementById('exerciseTitle');
+        const exerciseDescription = document.getElementById('exerciseDescription');
+        const testCaseResults = document.getElementById('testCaseResults');
+
+        // Login functionality
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Kiểm tra thông tin đăng nhập đơn giản
-            if(username === 'student' && password === 'password') {
-                // Ẩn màn hình đăng nhập và hiển thị bảng điều khiển
-                document.getElementById('loginContainer').classList.add('hidden');
-                document.getElementById('dashboardContainer').classList.remove('hidden');
+            if (username === 'student' && password === 'password') {
+                loginSection.classList.remove('active');
+                dashboardSection.classList.add('active');
             } else {
-                alert('Sai tên đăng nhập hoặc mật khẩu');
+                alert('Invalid login credentials');
             }
         });
+
+        // Filter exercises by language
+        filterSelect.addEventListener('change', () => {
+            const selectedLanguage = filterSelect.value;
+            const exercises = exerciseList.getElementsByClassName('exercise');
+
+            Array.from(exercises).forEach(exercise => {
+                const language = exercise.getAttribute('data-language');
+                if (selectedLanguage === 'all' || language === selectedLanguage) {
+                    exercise.style.display = '';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
+        });
+
+        // Select an exercise
+        selectExerciseButton.addEventListener('click', () => {
+            const selectedExercise = document.querySelector('.exercise');
+            exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
+            exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
+
+            dashboardSection.classList.remove('active');
+            codingSection.classList.add('active');
+        });
+
+        // Run, clear, and submit code actions
+        runCodeButton.addEventListener('click', () => {
+            testCaseResults.textContent = 'Running code...';
+            // Simulate running code and displaying test case results
+            setTimeout(() => {
+                testCaseResults.textContent = 'Test Case 1: Passed\nTest Case 2: Failed';
+            }, 1000);
+        });
+
+        clearCodeButton.addEventListener('click', () => {
+            codeEditor.value = '// Start coding here...';
+        });
+
+        submitCodeButton.addEventListener('click', () => {
+            alert('Code submitted for grading!');
+        });
     </script>
+
 </body>
 </html>
