@@ -80,7 +80,6 @@
         .tab {
             overflow: hidden;
             background-color: #333;
-            position: relative; /* Thêm vị trí tương đối cho tab */
         }
         .tab button {
             background-color: inherit;
@@ -99,19 +98,6 @@
         .tab button.active {
             background-color: #5cb85c;
             color: white;
-        }
-        /* Định vị nút Đăng xuất ở góc phải */
-        .logout-button {
-            position: absolute;
-            right: 10px; /* Khoảng cách từ bên phải */
-            top: 50%; /* Đặt ở giữa theo chiều dọc */
-            transform: translateY(-50%); /* Căn giữa theo chiều dọc */
-            padding: 14px 16px;
-            background-color: #d9534f; /* Màu nền cho nút Đăng xuất */
-            border: none;
-            border-radius: 4px;
-            color: white;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -136,7 +122,6 @@
             <button class="tablinks" onclick="openTab(event, 'lab1')">Lab1</button>
             <button class="tablinks" onclick="openTab(event, 'lab2')">Lab2</button>
             <button class="tablinks" onclick="openTab(event, 'lab3')">Lab3</button>
-            <button class="logout-button" onclick="logout()">Logout</button> <!-- Nút Đăng xuất -->
         </div>
 
         <!-- Home Section -->
@@ -239,57 +224,25 @@
         const exerciseDescription = document.getElementById('exerciseDescription');
 
         loginForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            // Thực hiện đăng nhập ở đây
+            event.preventDefault(); // Prevent form submission
             loginSection.classList.remove('active');
             tabMenu.style.display = 'block';
-            dashboardSection.classList.add('active');
+            openTab(event, 'home'); // Open home tab by default
         });
-
-        function openTab(evt, tabName) {
-            const i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("home active lab dashboard coding-environment about");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";  
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";  
-            evt.currentTarget.className += " active";
-        }
-
-        function logout() {
-            loginSection.classList.add('active');
-            tabMenu.style.display = 'none';
-            dashboardSection.classList.remove('active');
-            codingSection.classList.remove('active');
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('about').style.display = 'none';
-        }
 
         selectExerciseButton.addEventListener('click', function () {
-            const selectedExercise = document.querySelector('.exercise.active'); // Giả sử có lớp active
-            if (selectedExercise) {
-                exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
-                exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
-                dashboardSection.classList.remove('active');
-                codingSection.classList.add('active');
-            }
+            dashboardSection.classList.remove('active');
+            codingSection.classList.add('active');
+            const selectedExercise = document.querySelector('.exercise:visible'); // Chọn bài tập hiển thị
+            exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
+            exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
         });
 
-        function goBackToDashboard() {
-            codingSection.classList.remove('active');
-            dashboardSection.classList.add('active');
-        }
-
-        // Lọc và tìm kiếm exercise
         filterSelect.addEventListener('change', function () {
-            const selectedLanguage = this.value;
+            const selectedLanguage = filterSelect.value;
             const exercises = document.querySelectorAll('.exercise');
             exercises.forEach(exercise => {
-                if (selectedLanguage === 'all' || exercise.dataset.language === selectedLanguage) {
+                if (selectedLanguage === 'all' || exercise.getAttribute('data-language') === selectedLanguage) {
                     exercise.style.display = 'block';
                 } else {
                     exercise.style.display = 'none';
@@ -298,17 +251,43 @@
         });
 
         searchInput.addEventListener('input', function () {
-            const keyword = this.value.toLowerCase();
+            const searchValue = searchInput.value.toLowerCase();
             const exercises = document.querySelectorAll('.exercise');
             exercises.forEach(exercise => {
                 const title = exercise.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(keyword)) {
+                const description = exercise.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchValue) || description.includes(searchValue)) {
                     exercise.style.display = 'block';
                 } else {
                     exercise.style.display = 'none';
                 }
             });
         });
+
+        function openTab(evt, tabName) {
+            const tabs = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            const sections = document.querySelectorAll('.home, .about, .lab, .dashboard, .coding-environment');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+
+            if (tabName === 'lab2') {
+                dashboardSection.classList.add('active'); // Show dashboard when Lab2 is selected
+            }
+        }
+
+        function goToExerciseSelection() {
+            dashboardSection.classList.add('active');
+            codingSection.classList.remove('active');
+        }
+
+        function goBackToDashboard() {
+            codingSection.classList.remove('active');
+            dashboardSection.classList.add('active'); // Quay lại dashboard để chọn bài tập khác
+        }
     </script>
 </body>
 </html>
