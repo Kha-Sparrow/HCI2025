@@ -211,6 +211,7 @@
                 <h3>Test Cases</h3>
                 <p id="testCaseResults">No test cases run yet.</p>
             </div>
+            <button onclick="goBackToDashboard()">Back to Exercise Selection</button> <!-- Nút Back to Exercise Selection -->
         </div>
     </div>
 
@@ -223,7 +224,6 @@
         const selectExerciseButton = document.getElementById('selectExercise');
         const filterSelect = document.getElementById('filter');
         const searchInput = document.getElementById('search');
-        const exerciseList = document.getElementById('exerciseList');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
 
@@ -239,7 +239,7 @@
         selectExerciseButton.addEventListener('click', function () {
             dashboardSection.classList.remove('active');
             codingSection.classList.add('active');
-            const selectedExercise = document.querySelector('.exercise:visible');
+            const selectedExercise = document.querySelector('.exercise:visible'); // Chọn bài tập hiển thị
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
             previousTab = 'dashboard'; // Lưu trạng thái tab trước đó
@@ -290,11 +290,12 @@
 
         function goBack() {
             // Quay lại tab trước đó
-            if (previousTab === 'dashboard') {
-                openTab(event, 'lab2'); // Quay lại Lab2 nếu đang ở dashboard
-            } else {
-                openTab(event, previousTab); // Quay lại tab trước đó
-            }
+            openTab(event, previousTab); // Quay lại tab trước đó
+        }
+
+        function goBackToDashboard() {
+            codingSection.classList.remove('active');
+            dashboardSection.classList.add('active'); // Quay lại dashboard để chọn bài tập khác
         }
     </script>
 </body>
