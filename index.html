@@ -22,10 +22,10 @@
         h2 {
             text-align: center;
         }
-        .login, .dashboard, .coding-environment {
+        .login, .dashboard, .coding-environment, .home, .about, .lab {
             display: none;
         }
-        .login.active, .dashboard.active, .coding-environment.active {
+        .login.active, .dashboard.active, .coding-environment.active, .home.active, .about.active, .lab.active {
             display: block;
         }
         input[type="text"], input[type="password"], input[type="search"] {
@@ -76,13 +76,78 @@
             border-radius: 4px;
             font-family: monospace;
         }
+        /* Style for Tabs */
+        .tab {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            color: white;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .tab button.active {
+            background-color: #5cb85c;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- Tab Menu -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'home')">Home</button>
+            <button class="tablinks" onclick="openTab(event, 'about')">About</button>
+            <button class="tablinks" onclick="openTab(event, 'lab1')">Lab1</button>
+            <button class="tablinks" onclick="openTab(event, 'lab2')">Lab2</button>
+            <button class="tablinks" onclick="openTab(event, 'lab3')">Lab3</button>
+        </div>
+
+        <!-- Home Section -->
+        <div id="home" class="home active">
+            <h2>Welcome to the Student Coding Platform</h2>
+            <p>This is a platform to practice coding in various programming languages.</p>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="about">
+            <h2>About</h2>
+            <p>This platform allows students to solve coding exercises, get feedback, and improve their coding skills.</p>
+        </div>
+
+        <!-- Lab1 Section -->
+        <div id="lab1" class="lab">
+            <h2>Lab 1 Exercises</h2>
+            <p>This section contains exercises for Lab 1.</p>
+            <!-- Add lab-specific content here -->
+        </div>
+
+        <!-- Lab2 Section -->
+        <div id="lab2" class="lab">
+            <h2>Lab 2 Exercises</h2>
+            <p>This section contains exercises for Lab 2.</p>
+            <!-- Add lab-specific content here -->
+        </div>
+
+        <!-- Lab3 Section -->
+        <div id="lab3" class="lab">
+            <h2>Lab 3 Exercises</h2>
+            <p>This section contains exercises for Lab 3.</p>
+            <!-- Add lab-specific content here -->
+        </div>
+
         <!-- Login Section -->
-        <div class="login active" id="loginSection">
+        <div class="login" id="loginSection">
             <h2>Login</h2>
             <form id="loginForm">
                 <input type="text" id="username" placeholder="Username/Email" required>
@@ -166,79 +231,58 @@
         const exerciseDescription = document.getElementById('exerciseDescription');
         const testCaseResults = document.getElementById('testCaseResults');
 
-        // Login functionality
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (username === 'student' && password === 'password') {
-                loginSection.classList.remove('active');
-                dashboardSection.classList.add('active');
-            } else {
-                alert('Invalid login credentials');
-            }
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            loginSection.classList.remove('active');
+            dashboardSection.classList.add('active');
         });
 
-        // Filter exercises by language
-        filterSelect.addEventListener('change', () => {
-            const selectedLanguage = filterSelect.value;
-            const exercises = exerciseList.getElementsByClassName('exercise');
-
-            Array.from(exercises).forEach(exercise => {
-                const language = exercise.getAttribute('data-language');
-                if (selectedLanguage === 'all' || language === selectedLanguage) {
-                    exercise.style.display = '';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
-
-        // Search exercises by keyword
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const exercises = exerciseList.getElementsByClassName('exercise');
-
-            Array.from(exercises).forEach(exercise => {
-                const title = exercise.querySelector('h3').textContent.toLowerCase();
-                const description = exercise.querySelector('p').textContent.toLowerCase();
-
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    exercise.style.display = '';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
-
-        // Select an exercise
-        selectExerciseButton.addEventListener('click', () => {
+        selectExerciseButton.addEventListener('click', function () {
+            dashboardSection.classList.remove('active');
+            codingSection.classList.add('active');
             const selectedExercise = document.querySelector('.exercise');
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
-
-            dashboardSection.classList.remove('active');
-            codingSection.classList.add('active');
         });
 
-        // Run, clear, and submit code actions
-        runCodeButton.addEventListener('click', () => {
-            testCaseResults.textContent = 'Running code...';
-            // Simulate running code and displaying test case results
-            setTimeout(() => {
-                testCaseResults.textContent = 'Test Case 1: Passed\nTest Case 2: Failed';
-            }, 1000);
+        filterSelect.addEventListener('change', function () {
+            const selectedLanguage = filterSelect.value;
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(exercise => {
+                if (selectedLanguage === 'all' || exercise.getAttribute('data-language') === selectedLanguage) {
+                    exercise.style.display = 'block';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
         });
 
-        clearCodeButton.addEventListener('click', () => {
-            codeEditor.value = '// Start coding here...';
+        searchInput.addEventListener('input', function () {
+            const searchValue = searchInput.value.toLowerCase();
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(exercise => {
+                const title = exercise.querySelector('h3').textContent.toLowerCase();
+                const description = exercise.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchValue) || description.includes(searchValue)) {
+                    exercise.style.display = 'block';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
         });
 
-        submitCodeButton.addEventListener('click', () => {
-            alert('Code submitted for grading!');
-        });
+        function openTab(evt, tabName) {
+            const tabs = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            const sections = document.getElementsByClassName("home about lab");
+            for (let i = 0; i < sections.length; i++) {
+                sections[i].className = sections[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
     </script>
-
 </body>
 </html>
