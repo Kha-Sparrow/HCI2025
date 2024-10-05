@@ -145,10 +145,7 @@
 
         <!-- Lab2 Section -->
         <div id="lab2" class="lab">
-            <h2>Lab 2 Exercises</h2>
-            <p>This section contains exercises for Lab 2.</p>
-            <!-- Chuyển hướng đến phần chọn bài tập -->
-            <button id="goToDashboard">Go to Exercise Selection</button>
+            <!-- Đã loại bỏ tiêu đề và nút -->
         </div>
 
         <!-- Lab3 Section -->
@@ -229,7 +226,6 @@
         const submitCodeButton = document.getElementById('submitCode');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
-        const goToDashboardButton = document.getElementById('goToDashboard');
 
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -244,13 +240,6 @@
             const selectedExercise = document.querySelector('.exercise');
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
-        });
-
-        goToDashboardButton.addEventListener('click', function () {
-            dashboardSection.classList.add('active'); // Show dashboard
-            document.querySelector('.lab.active').classList.remove('active'); // Hide active lab tab
-            filterSelect.value = 'all'; // Reset filter
-            searchInput.value = ''; // Clear search input
         });
 
         filterSelect.addEventListener('change', function () {
