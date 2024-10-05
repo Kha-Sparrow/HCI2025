@@ -147,7 +147,6 @@
 
         <!-- Lab2 Section -->
         <div id="lab2" class="lab">
-            <!-- Đã loại bỏ tiêu đề và nút -->
             <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
@@ -225,11 +224,10 @@
         const filterSelect = document.getElementById('filter');
         const searchInput = document.getElementById('search');
         const exerciseList = document.getElementById('exerciseList');
-        const clearCodeButton = document.getElementById('clearCode');
-        const submitCodeButton = document.getElementById('submitCode');
-        const runCodeButton = document.getElementById('runCode');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
+
+        let previousTab = 'home'; // Biến để lưu tab trước đó
 
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
@@ -244,6 +242,7 @@
             const selectedExercise = document.querySelector('.exercise:visible');
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
+            previousTab = 'dashboard'; // Lưu trạng thái tab trước đó
         });
 
         filterSelect.addEventListener('change', function () {
@@ -284,21 +283,17 @@
 
             if (tabName === 'lab2') {
                 dashboardSection.classList.add('active'); // Show dashboard when Lab2 is selected
+            } else if (tabName === 'dashboard') {
+                previousTab = 'home'; // Nếu quay lại từ Lab2 thì lưu lại trạng thái
             }
         }
 
         function goBack() {
             // Quay lại tab trước đó
-            const tabs = document.getElementsByClassName("tablinks");
-            for (let i = 0; i < tabs.length; i++) {
-                if (tabs[i].classList.contains("active")) {
-                    const currentTab = tabs[i].textContent.toLowerCase();
-                    if (currentTab === 'home') {
-                        openTab(event, 'about'); // Ví dụ quay lại About nếu đang ở Home
-                    } else {
-                        openTab(event, 'home'); // Quay lại Home
-                    }
-                }
+            if (previousTab === 'dashboard') {
+                openTab(event, 'lab2'); // Quay lại Lab2 nếu đang ở dashboard
+            } else {
+                openTab(event, previousTab); // Quay lại tab trước đó
             }
         }
     </script>
