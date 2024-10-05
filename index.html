@@ -147,7 +147,8 @@
         <div id="lab2" class="lab">
             <h2>Lab 2 Exercises</h2>
             <p>This section contains exercises for Lab 2.</p>
-            <!-- Add lab-specific content here -->
+            <!-- Chuyển hướng đến phần chọn bài tập -->
+            <button id="goToDashboard">Go to Exercise Selection</button>
         </div>
 
         <!-- Lab3 Section -->
@@ -224,11 +225,11 @@
         const filterSelect = document.getElementById('filter');
         const searchInput = document.getElementById('search');
         const exerciseList = document.getElementById('exerciseList');
-        const runCodeButton = document.getElementById('runCode');
         const clearCodeButton = document.getElementById('clearCode');
         const submitCodeButton = document.getElementById('submitCode');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
+        const goToDashboardButton = document.getElementById('goToDashboard');
 
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -243,6 +244,13 @@
             const selectedExercise = document.querySelector('.exercise');
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
+        });
+
+        goToDashboardButton.addEventListener('click', function () {
+            dashboardSection.classList.add('active'); // Show dashboard
+            document.querySelector('.lab.active').classList.remove('active'); // Hide active lab tab
+            filterSelect.value = 'all'; // Reset filter
+            searchInput.value = ''; // Clear search input
         });
 
         filterSelect.addEventListener('change', function () {
@@ -280,8 +288,11 @@
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active";
+
+            if (tabName === 'lab2') {
+                dashboardSection.classList.add('active'); // Show dashboard when Lab2 is selected
+            }
         }
     </script>
 </body>
 </html>
-
