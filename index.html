@@ -128,33 +128,31 @@
         <div id="home" class="home">
             <h2>Welcome to the Student Coding Platform</h2>
             <p>This is a platform to practice coding in various programming languages.</p>
-            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- About Section -->
         <div id="about" class="about">
             <h2>About</h2>
             <p>This platform allows students to solve coding exercises, get feedback, and improve their coding skills.</p>
-            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Lab1 Section -->
         <div id="lab1" class="lab">
             <h2>Lab 1 Exercises</h2>
             <p>This section contains exercises for Lab 1.</p>
-            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Lab2 Section -->
         <div id="lab2" class="lab">
-            <button onclick="goBack()">Back</button> <!-- Nút Back -->
+            <h2>Lab 2 Exercises</h2>
+            <p>This section contains exercises for Lab 2.</p>
+            <button onclick="goToExerciseSelection()">Go to Exercise Selection</button>
         </div>
 
         <!-- Lab3 Section -->
         <div id="lab3" class="lab">
             <h2>Lab 3 Exercises</h2>
             <p>This section contains exercises for Lab 3.</p>
-            <button onclick="goBack()">Back</button> <!-- Nút Back -->
         </div>
 
         <!-- Dashboard Section -->
@@ -227,8 +225,6 @@
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
 
-        let previousTab = 'home'; // Biến để lưu tab trước đó
-
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
             loginSection.classList.remove('active');
@@ -242,7 +238,6 @@
             const selectedExercise = document.querySelector('.exercise:visible'); // Chọn bài tập hiển thị
             exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
             exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
-            previousTab = 'dashboard'; // Lưu trạng thái tab trước đó
         });
 
         filterSelect.addEventListener('change', function () {
@@ -283,14 +278,12 @@
 
             if (tabName === 'lab2') {
                 dashboardSection.classList.add('active'); // Show dashboard when Lab2 is selected
-            } else if (tabName === 'dashboard') {
-                previousTab = 'home'; // Nếu quay lại từ Lab2 thì lưu lại trạng thái
             }
         }
 
-        function goBack() {
-            // Quay lại tab trước đó
-            openTab(event, previousTab); // Quay lại tab trước đó
+        function goToExerciseSelection() {
+            dashboardSection.classList.add('active');
+            codingSection.classList.remove('active');
         }
 
         function goBackToDashboard() {
