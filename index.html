@@ -125,7 +125,7 @@
         </div>
 
         <!-- Home Section -->
-        <div id="home" class="home">
+        <div id="home" class="home active">
             <h2>Welcome to the Student Coding Platform</h2>
             <p>This is a platform to practice coding in various programming languages.</p>
         </div>
@@ -230,7 +230,7 @@
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
             loginSection.classList.remove('active');
-            tabMenu.style.display = "block"; // Show tab menu after login
+            tabMenu.style.display = 'block';
             openTab(event, 'home'); // Open home tab by default
         });
 
@@ -273,7 +273,7 @@
             for (let i = 0; i < tabs.length; i++) {
                 tabs[i].className = tabs[i].className.replace(" active", "");
             }
-            const sections = document.querySelectorAll('.home, .about, .lab');
+            const sections = document.querySelectorAll('.home, .about, .lab, .dashboard, .coding-environment');
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active";
