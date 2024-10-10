@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 2 - Exercises</title>
+    <title>Student Coding Platform - Lab 2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,142 +22,127 @@
         h2 {
             text-align: center;
         }
-        .exercise {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .exercise-title {
-            font-weight: bold;
-        }
-        .filter {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .filter input {
+        input[type="search"] {
+            width: 100%;
             padding: 10px;
-            width: 300px;
-            border-radius: 4px;
+            margin: 10px 0;
             border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .button {
+        .exercise {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .difficulty {
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+        }
+        .easy { background-color: #5cb85c; }
+        .medium { background-color: #f0ad4e; }
+        .hard { background-color: #d9534f; }
+        .editor, .test-cases {
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 20px;
             background-color: #5cb85c;
             color: white;
             border: none;
             border-radius: 4px;
-            padding: 10px 20px;
             cursor: pointer;
         }
-        .button:hover {
+        button:hover {
             background-color: #4cae4c;
-        }
-        #codingEnvironment {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-        }
-        #codeEditor {
-            width: 100%;
-            height: 200px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            font-family: monospace;
-        }
-        #runButton, #clearButton {
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Available Exercises</h2>
-
-        <div class="filter">
-            <input type="text" id="search" placeholder="Search exercises..." onkeyup="filterExercises()">
+        <!-- Dashboard Section -->
+        <div class="dashboard" id="dashboardSection">
+            <h2>Available Exercises</h2>
+            <div>
+                <label for="filter">Filter by language: </label>
+                <select id="filter">
+                    <option value="all">All</option>
+                    <option value="c">C</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                </select>
+            </div>
+            <div>
+                <label for="search">Search by keyword: </label>
+                <input type="search" id="search" placeholder="Search exercises...">
+            </div>
+            <div id="exerciseList">
+                <div class="exercise" data-language="c">
+                    <h3>Basic C Program</h3>
+                    <p>Write a simple C program to calculate the sum of two numbers.</p>
+                    <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
+                </div>
+                <div class="exercise" data-language="python">
+                    <h3>Python Loops</h3>
+                    <p>Create a Python program using loops to print the first 10 prime numbers.</p>
+                    <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
+                </div>
+                <div class="exercise" data-language="java">
+                    <h3>Java OOP Concepts</h3>
+                    <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
+                    <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
+                </div>
+            </div>
+            <button id="selectExercise">Select Exercise</button>
         </div>
 
-        <div id="exercises">
-            <!-- Exercise Examples -->
-            <div class="exercise">
-                <div>
-                    <div class="exercise-title">Exercise 1: FizzBuzz</div>
-                    <div>Difficulty: Easy | Language: C</div>
-                    <div>Status: Not Started</div>
-                </div>
-                <button class="button" onclick="selectExercise('Exercise 1', 'FizzBuzz description')">Select</button>
-            </div>
-            <div class="exercise">
-                <div>
-                    <div class="exercise-title">Exercise 2: Prime Number Checker</div>
-                    <div>Difficulty: Medium | Language: Python</div>
-                    <div>Status: In Progress</div>
-                </div>
-                <button class="button" onclick="selectExercise('Exercise 2', 'Prime Number Checker description')">Select</button>
-            </div>
-            <div class="exercise">
-                <div>
-                    <div class="exercise-title">Exercise 3: Sorting Algorithm</div>
-                    <div>Difficulty: Hard | Language: Java</div>
-                    <div>Status: Completed</div>
-                </div>
-                <button class="button" onclick="selectExercise('Exercise 3', 'Sorting Algorithm description')">Select</button>
-            </div>
-            <!-- Add more exercises as needed -->
-        </div>
-
-        <div id="codingEnvironment">
-            <h3 id="exerciseTitle"></h3>
+        <!-- Coding Environment Section -->
+        <div class="coding-environment" id="codingSection" style="display: none;">
+            <h2>Exercise: <span id="exerciseTitle"></span></h2>
             <p id="exerciseDescription"></p>
-            <textarea id="codeEditor" placeholder="Write your code here..."></textarea><br>
-            <button class="button" id="runButton" onclick="runCode()">Run Code</button>
-            <button class="button" id="clearButton" onclick="clearCode()">Clear Code</button>
-            <div id="output"></div>
+            <div class="editor">
+                <h3>Code Editor</h3>
+                <textarea id="codeEditor">// Start coding here...</textarea>
+                <button id="runCode">Run Code</button>
+                <button id="clearCode">Clear Code</button>
+                <button id="submitCode">Submit Code</button>
+            </div>
+            <div class="test-cases">
+                <h3>Test Cases</h3>
+                <p id="testCaseResults">No test cases run yet.</p>
+            </div>
+            <button onclick="goBackToDashboard()">Back to Exercise Selection</button>
         </div>
     </div>
 
     <script>
-        function filterExercises() {
-            const input = document.getElementById('search');
-            const filter = input.value.toLowerCase();
-            const exercises = document.getElementById("exercises");
-            const exerciseDivs = exercises.getElementsByClassName('exercise');
+        const selectExerciseButton = document.getElementById('selectExercise');
+        const codingSection = document.getElementById('codingSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const exerciseTitle = document.getElementById('exerciseTitle');
+        const exerciseDescription = document.getElementById('exerciseDescription');
 
-            for (let i = 0; i < exerciseDivs.length; i++) {
-                const title = exerciseDivs[i].getElementsByClassName("exercise-title")[0];
-                if (title) {
-                    const txtValue = title.textContent || title.innerText;
-                    exerciseDivs[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
-                }
-            }
-        }
+        selectExerciseButton.addEventListener('click', function () {
+            dashboardSection.style.display = 'none'; // Hide dashboard
+            codingSection.style.display = 'block'; // Show coding section
+            const selectedExercise = document.querySelector('.exercise'); // Choose the first exercise as an example
+            exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
+            exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
+        });
 
-        function selectExercise(title, description) {
-            document.getElementById('exerciseTitle').innerText = title;
-            document.getElementById('exerciseDescription').innerText = description;
-            document.getElementById('codingEnvironment').style.display = 'block';
-            document.getElementById('output').innerHTML = ''; // Clear previous output
-        }
-
-        function runCode() {
-            const code = document.getElementById('codeEditor').value;
-            // Simulate running the code (for demo purposes, replace this with actual execution logic)
-            document.getElementById('output').innerHTML = `<strong>Output:</strong><br>${code}`;
-        }
-
-        function clearCode() {
-            document.getElementById('codeEditor').value = '';
-            document.getElementById('output').innerHTML = '';
+        function goBackToDashboard() {
+            codingSection.style.display = 'none'; // Hide coding section
+            dashboardSection.style.display = 'block'; // Show dashboard
         }
     </script>
-
 </body>
 </html>
