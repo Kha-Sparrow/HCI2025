@@ -4,108 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!-- Thêm Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            background-color: #f8f9fa;
         }
         .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
         }
-        h2 {
-            text-align: center;
-        }
-        .tab {
-            overflow: hidden;
-            background-color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .tab button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            color: white;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .tab button.active {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .lab-menu {
+        .tab-content {
             margin-top: 20px;
-            text-align: center;
         }
         .lab-menu a {
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #5cb85c;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .lab-menu a:hover {
-            background-color: #4cae4c;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Welcome to the Home Page</h2>
+        <h2 class="text-center">Welcome to the Home Page</h2>
 
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'home')">Home</button>
-            <button class="tablinks" onclick="openTab(event, 'about')">About</button>
-            <button class="tablinks" onclick="toggleLabs()">Labs</button>
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" onclick="openTab(event, 'home')">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="openTab(event, 'about')">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" onclick="toggleLabs()">Labs</a>
+            </li>
+        </ul>
 
-        <div id="home" class="tabcontent">
-            <h3>Home Content</h3>
-            <p>This is the home section.</p>
-        </div>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade show active">
+                <h3>Home Content</h3>
+                <p>This is the home section.</p>
+            </div>
 
-        <div id="about" class="tabcontent" style="display: none;">
-            <h3>About Content</h3>
-            <p>This platform allows students to solve coding exercises and improve their skills.</p>
-            <p><a href="about.html">Learn more</a></p>
-        </div>
+            <div id="about" class="tab-pane fade">
+                <h3>About Content</h3>
+                <p>This platform allows students to solve coding exercises and improve their skills.</p>
+                <p><a href="about.html">Learn more</a></p>
+            </div>
 
-        <div class="lab-menu" id="labMenu" style="display: none;">
-            <h3>Select a Lab</h3>
-            <a href="lab1.html">Lab 1</a>
-            <a href="lab2.html">Lab 2</a>
-            <a href="lab3.html">Lab 3</a>
-            <a href="lab4.html">Lab 4</a>
-            <a href="lab5.html">Lab 5</a>
+            <div class="lab-menu" id="labMenu" style="display: none;">
+                <h3>Select a Lab</h3>
+                <a href="lab1.html" class="btn btn-success">Lab 1</a>
+                <a href="lab2.html" class="btn btn-success">Lab 2</a>
+                <a href="lab3.html" class="btn btn-success">Lab 3</a>
+                <a href="lab4.html" class="btn btn-success">Lab 4</a>
+                <a href="lab5.html" class="btn btn-success">Lab 5</a>
+            </div>
         </div>
     </div>
 
+    <!-- Thêm jQuery và Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         function openTab(evt, tabName) {
-            const tabs = document.getElementsByClassName("tablinks");
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].className = tabs[i].className.replace(" active", "");
-            }
-            const tabcontents = document.getElementsByClassName("tabcontent");
-            for (let i = 0; i < tabcontents.length; i++) {
-                tabcontents[i].style.display = "none";
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
+            const tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            const tabcontents = document.querySelectorAll('.tab-pane');
+            tabcontents.forEach(content => content.classList.remove('show', 'active'));
+            
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabName).classList.add('show', 'active');
         }
 
         function toggleLabs() {
