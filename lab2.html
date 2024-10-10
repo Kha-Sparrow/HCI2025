@@ -70,8 +70,9 @@
         .easy { background-color: #5cb85c; } /* Green */
         .medium { background-color: #f0ad4e; } /* Yellow */
         .hard { background-color: #d9534f; } /* Red */
-        .cpp { background-color: #ff7f50; } /* Coral for C */
-        .java { background-color: #4682b4; } /* Steel Blue for Java */
+        .c { background-color: #FF7F50; } /* Coral for C */
+        .python { background-color: #87CEFA; } /* LightSkyBlue for Python */
+        .java { background-color: #FAFAD2; } /* LightGoldenRodYellow for Java */
         .editor, .test-cases {
             margin: 20px 0;
         }
@@ -122,19 +123,19 @@
                 <input type="search" id="search" placeholder="Search exercises...">
             </div>
             <div id="exerciseList">
-                <div class="exercise" data-language="c">
+                <div class="exercise c" data-language="c">
                     <h3>Basic C Program</h3>
                     <p>Write a simple C program to calculate the sum of two numbers.</p>
                     <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise" data-language="python">
+                <div class="exercise python" data-language="python">
                     <h3>Python Loops</h3>
                     <p>Create a Python program using loops to print the first 10 prime numbers.</p>
                     <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise" data-language="java">
+                <div class="exercise java" data-language="java">
                     <h3>Java OOP Concepts</h3>
                     <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
                     <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
@@ -188,12 +189,12 @@
                 dashboardSection.style.display = 'none'; // Ẩn bảng điều khiển
                 codingSection.style.display = 'block'; // Hiển thị phần lập trình
 
-                // Khởi tạo CodeMirror với ngôn ngữ đã chọn
-                initCodeMirror(languageSelector.value);
+                // Khởi tạo CodeMirror với ngôn ngữ C mặc định
+                initCodeMirror('text/x-csrc');
             });
         });
 
-        // Hàm khởi tạo CodeMirror
+        // Khởi tạo CodeMirror
         function initCodeMirror(language) {
             if (editor) {
                 editor.toTextArea(); // Xóa CodeMirror hiện tại nếu có
