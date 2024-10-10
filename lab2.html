@@ -67,12 +67,9 @@
             border-radius: 4px;
             color: white;
         }
-        .easy { background-color: #5cb85c; } /* Green */
-        .medium { background-color: #f0ad4e; } /* Yellow */
-        .hard { background-color: #d9534f; } /* Red */
-        .c { background-color: #FF7F50; } /* Coral for C */
-        .python { background-color: #87CEFA; } /* LightSkyBlue for Python */
-        .java { background-color: #FAFAD2; } /* LightGoldenRodYellow for Java */
+        .easy { background-color: #5cb85c; }
+        .medium { background-color: #f0ad4e; }
+        .hard { background-color: #d9534f; }
         .editor, .test-cases {
             margin: 20px 0;
         }
@@ -123,19 +120,19 @@
                 <input type="search" id="search" placeholder="Search exercises...">
             </div>
             <div id="exerciseList">
-                <div class="exercise c" data-language="c">
+                <div class="exercise" data-language="c">
                     <h3>Basic C Program</h3>
                     <p>Write a simple C program to calculate the sum of two numbers.</p>
                     <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise python" data-language="python">
+                <div class="exercise" data-language="python">
                     <h3>Python Loops</h3>
                     <p>Create a Python program using loops to print the first 10 prime numbers.</p>
                     <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise java" data-language="java">
+                <div class="exercise" data-language="java">
                     <h3>Java OOP Concepts</h3>
                     <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
                     <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
@@ -155,6 +152,7 @@
             </select>
             <div class="editor">
                 <h3>Code Editor</h3>
+                <textarea id="codeEditor">// Start coding here...</textarea>
                 <div id="codeMirrorContainer" class="code-editor"></div>
                 <button id="runCode">Run Code</button>
                 <button id="clearCode">Clear Code</button>
@@ -169,86 +167,88 @@
     </div>
 
     <script>
+        document.getElementById('filter').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(exercise => {
+                if (selectedLanguage === 'all' || exercise.dataset.language === selectedLanguage) {
+                    exercise.style.display = 'block';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('search').addEventListener('input', function() {
+            const keyword = this.value.toLowerCase();
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(exercise => {
+                const title = exercise.querySelector('h3').textContent.toLowerCase();
+                exercise.style.display = title.includes(keyword) ? 'block' : 'none';
+            });
+        });
+
         const selectExerciseButtons = document.querySelectorAll('.selectExercise');
         const codingSection = document.getElementById('codingSection');
         const dashboardSection = document.getElementById('dashboardSection');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
         const languageSelector = document.getElementById('languageSelector');
-        const codeMirrorContainer = document.getElementById('codeMirrorContainer');
-
-        let editor; // Đối tượng CodeMirror
+        let codeMirrorEditor;
 
         selectExerciseButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const exercise = this.parentElement; // Lấy div bài tập cha
+                const exercise = this.parentElement; // Get the parent exercise div
                 exerciseTitle.textContent = exercise.querySelector('h3').textContent;
                 exerciseDescription.textContent = exercise.querySelector('p').textContent;
 
-                // Hiển thị phần coding
-                dashboardSection.style.display = 'none'; // Ẩn bảng điều khiển
-                codingSection.style.display = 'block'; // Hiển thị phần lập trình
-
-                // Khởi tạo CodeMirror với ngôn ngữ C mặc định
-                initCodeMirror('text/x-csrc');
+                dashboardSection.style.display = 'none'; // Hide dashboard
+                codingSection.style.display = 'block'; // Show coding section
+                
+                // Khởi tạo CodeMirror
+                if (codeMirrorEditor) {
+                    codeMirrorEditor.toTextArea();
+                }
+                codeMirrorEditor = CodeMirror(document.getElementById('codeMirrorContainer'), {
+                    value: '// Start coding here...',
+                    mode: 'text/x-csrc', // Mặc định là C
+                    theme: 'dracula',
+                    lineNumbers: true,
+                    autoCloseBrackets: true,
+                    autoFocus: true,
+                });
+                
+                // Thay đổi ngôn ngữ khi chọn
+                languageSelector.addEventListener('change', function() {
+                    const selectedLang = this.value;
+                    let mode;
+                    switch (selectedLang) {
+                        case 'c':
+                            mode = 'text/x-csrc';
+                            break;
+                        case 'python':
+                            mode = 'text/x-python';
+                            break;
+                        case 'java':
+                            mode = 'text/x-java';
+                            break;
+                    }
+                    codeMirrorEditor.setOption("mode", mode);
+                    codeMirrorEditor.setValue('// Start coding here...'); // Thiết lập mẫu mặc định
+                });
             });
         });
 
-        // Khởi tạo CodeMirror
-        function initCodeMirror(language) {
-            if (editor) {
-                editor.toTextArea(); // Xóa CodeMirror hiện tại nếu có
-            }
-            editor = CodeMirror(codeMirrorContainer, {
-                lineNumbers: true,
-                mode: language, // Chế độ ngôn ngữ
-                theme: 'dracula', // Giao diện
-                value: "// Start coding here..."
-            });
-        }
-
-        // Hàm quay lại bảng điều khiển
         function goBackToDashboard() {
-            codingSection.style.display = 'none';
-            dashboardSection.style.display = 'block';
-            if (editor) {
-                editor.toTextArea(); // Xóa CodeMirror
-                editor = null; // Đặt lại editor
+            codingSection.style.display = 'none'; // Hide coding section
+            dashboardSection.style.display = 'block'; // Show dashboard
+            
+            // Giải phóng tài nguyên của CodeMirror
+            if (codeMirrorEditor) {
+                codeMirrorEditor.toTextArea();
+                codeMirrorEditor = null;
             }
         }
-
-        // Lắng nghe sự kiện thay đổi ngôn ngữ
-        languageSelector.addEventListener('change', function () {
-            initCodeMirror(this.value); // Khởi tạo CodeMirror với ngôn ngữ mới
-        });
-
-        // Lọc bài tập theo ngôn ngữ
-        document.getElementById('filter').addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                if (selectedLanguage === 'all' || exercise.getAttribute('data-language') === selectedLanguage) {
-                    exercise.style.display = 'block';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
-
-        // Tìm kiếm bài tập theo từ khóa
-        document.getElementById('search').addEventListener('input', function() {
-            const keyword = this.value.toLowerCase();
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                const title = exercise.querySelector('h3').textContent.toLowerCase();
-                const description = exercise.querySelector('p').textContent.toLowerCase();
-                if (title.includes(keyword) || description.includes(keyword)) {
-                    exercise.style.display = 'block';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
     </script>
 </body>
 </html>
