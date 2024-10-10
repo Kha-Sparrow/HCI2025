@@ -55,6 +55,25 @@
         .button:hover {
             background-color: #4cae4c;
         }
+        #codingEnvironment {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        #codeEditor {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+        }
+        #runButton, #clearButton {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +93,7 @@
                     <div>Difficulty: Easy | Language: C</div>
                     <div>Status: Not Started</div>
                 </div>
-                <button class="button" onclick="selectExercise('Exercise 1')">Select</button>
+                <button class="button" onclick="selectExercise('Exercise 1', 'FizzBuzz description')">Select</button>
             </div>
             <div class="exercise">
                 <div>
@@ -82,7 +101,7 @@
                     <div>Difficulty: Medium | Language: Python</div>
                     <div>Status: In Progress</div>
                 </div>
-                <button class="button" onclick="selectExercise('Exercise 2')">Select</button>
+                <button class="button" onclick="selectExercise('Exercise 2', 'Prime Number Checker description')">Select</button>
             </div>
             <div class="exercise">
                 <div>
@@ -90,9 +109,18 @@
                     <div>Difficulty: Hard | Language: Java</div>
                     <div>Status: Completed</div>
                 </div>
-                <button class="button" onclick="selectExercise('Exercise 3')">Select</button>
+                <button class="button" onclick="selectExercise('Exercise 3', 'Sorting Algorithm description')">Select</button>
             </div>
             <!-- Add more exercises as needed -->
+        </div>
+
+        <div id="codingEnvironment">
+            <h3 id="exerciseTitle"></h3>
+            <p id="exerciseDescription"></p>
+            <textarea id="codeEditor" placeholder="Write your code here..."></textarea><br>
+            <button class="button" id="runButton" onclick="runCode()">Run Code</button>
+            <button class="button" id="clearButton" onclick="clearCode()">Clear Code</button>
+            <div id="output"></div>
         </div>
     </div>
 
@@ -112,9 +140,22 @@
             }
         }
 
-        function selectExercise(exerciseTitle) {
-            // Redirect to the coding environment for the selected exercise
-            window.location.href = `coding_environment.html?exercise=${encodeURIComponent(exerciseTitle)}`;
+        function selectExercise(title, description) {
+            document.getElementById('exerciseTitle').innerText = title;
+            document.getElementById('exerciseDescription').innerText = description;
+            document.getElementById('codingEnvironment').style.display = 'block';
+            document.getElementById('output').innerHTML = ''; // Clear previous output
+        }
+
+        function runCode() {
+            const code = document.getElementById('codeEditor').value;
+            // Simulate running the code (for demo purposes, replace this with actual execution logic)
+            document.getElementById('output').innerHTML = `<strong>Output:</strong><br>${code}`;
+        }
+
+        function clearCode() {
+            document.getElementById('codeEditor').value = '';
+            document.getElementById('output').innerHTML = '';
         }
     </script>
 
