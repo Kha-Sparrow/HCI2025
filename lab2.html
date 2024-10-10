@@ -60,6 +60,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #4cae4c;
@@ -90,19 +91,21 @@
                     <h3>Basic C Program</h3>
                     <p>Write a simple C program to calculate the sum of two numbers.</p>
                     <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
+                    <button class="selectExercise">Select</button>
                 </div>
                 <div class="exercise" data-language="python">
                     <h3>Python Loops</h3>
                     <p>Create a Python program using loops to print the first 10 prime numbers.</p>
                     <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
+                    <button class="selectExercise">Select</button>
                 </div>
                 <div class="exercise" data-language="java">
                     <h3>Java OOP Concepts</h3>
                     <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
                     <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
+                    <button class="selectExercise">Select</button>
                 </div>
             </div>
-            <button id="selectExercise">Select Exercise</button>
         </div>
 
         <!-- Coding Environment Section -->
@@ -125,18 +128,21 @@
     </div>
 
     <script>
-        const selectExerciseButton = document.getElementById('selectExercise');
+        const selectExerciseButtons = document.querySelectorAll('.selectExercise');
         const codingSection = document.getElementById('codingSection');
         const dashboardSection = document.getElementById('dashboardSection');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
 
-        selectExerciseButton.addEventListener('click', function () {
-            dashboardSection.style.display = 'none'; // Hide dashboard
-            codingSection.style.display = 'block'; // Show coding section
-            const selectedExercise = document.querySelector('.exercise'); // Choose the first exercise as an example
-            exerciseTitle.textContent = selectedExercise.querySelector('h3').textContent;
-            exerciseDescription.textContent = selectedExercise.querySelector('p').textContent;
+        selectExerciseButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const exercise = this.parentElement; // Get the parent exercise div
+                exerciseTitle.textContent = exercise.querySelector('h3').textContent;
+                exerciseDescription.textContent = exercise.querySelector('p').textContent;
+
+                dashboardSection.style.display = 'none'; // Hide dashboard
+                codingSection.style.display = 'block'; // Show coding section
+            });
         });
 
         function goBackToDashboard() {
