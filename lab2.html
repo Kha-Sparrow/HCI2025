@@ -150,10 +150,6 @@
                 <option value="python">Python</option>
                 <option value="java">Java</option>
             </select>
-            <div class="preloaded-template">
-                <h3>Pre-loaded Template</h3>
-                <pre id="templateDisplay" style="background-color: #f0f0f0; padding: 10px; border-radius: 4px; white-space: pre-wrap;"></pre>
-            </div>
             <div class="editor">
                 <h3>Code Editor</h3>
                 <div id="codeMirrorContainer" class="code-editor"></div>
@@ -219,7 +215,6 @@ if __name__ == "__main__":
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
         const languageSelector = document.getElementById('languageSelector');
-        const templateDisplay = document.getElementById('templateDisplay');
         let codeMirrorEditor;
 
         selectExerciseButtons.forEach(button => {
@@ -231,14 +226,10 @@ if __name__ == "__main__":
                 dashboardSection.style.display = 'none'; // Hide dashboard
                 codingSection.style.display = 'block'; // Show coding section
 
-                // Hiển thị mẫu tương ứng
-                const selectedLang = languageSelector.value;
-                templateDisplay.textContent = templates[selectedLang];
-                
                 // Khởi tạo CodeMirror
                 codeMirrorEditor = CodeMirror(document.getElementById('codeMirrorContainer'), {
-                    value: templates[selectedLang],
-                    mode: 'text/x-csrc', // Mặc định là C
+                    value: templates['c'], // Mặc định là C
+                    mode: 'text/x-csrc',
                     theme: 'dracula',
                     lineNumbers: true,
                     autoCloseBrackets: true,
@@ -262,7 +253,6 @@ if __name__ == "__main__":
                     }
                     codeMirrorEditor.setOption("mode", mode);
                     codeMirrorEditor.setValue(templates[selectedLang]); // Thiết lập mẫu mặc định
-                    templateDisplay.textContent = templates[selectedLang]; // Cập nhật mẫu hiển thị
                 });
             });
         });
