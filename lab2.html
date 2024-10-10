@@ -94,13 +94,13 @@
 <body>
 
     <div class="tab" id="tabMenu">
-        <a href="home.html"><button class="tablinks">Home</button></a>
-        <a href="about.html"><button class="tablinks">About</button></a>
-        <a href="lab1.html"><button class="tablinks">Lab1</button></a>
-        <a href="lab2.html"><button class="tablinks">Lab2</button></a>
-        <a href="lab3.html"><button class="tablinks">Lab3</button></a>
-        <a href="lab4.html"><button class="tablinks">Lab4</button></a>
-        <a href="lab5.html"><button class="tablinks">Lab5</button></a>
+        <a href="home.html"><button class="tablinks" data-tab="home">Home</button></a>
+        <a href="about.html"><button class="tablinks" data-tab="about">About</button></a>
+        <a href="lab1.html"><button class="tablinks" data-tab="lab1">Lab1</button></a>
+        <a href="lab2.html"><button class="tablinks" data-tab="lab2">Lab2</button></a>
+        <a href="lab3.html"><button class="tablinks" data-tab="lab3">Lab3</button></a>
+        <a href="lab4.html"><button class="tablinks" data-tab="lab4">Lab4</button></a>
+        <a href="lab5.html"><button class="tablinks" data-tab="lab5">Lab5</button></a>
     </div>
 
     <div class="container">
@@ -189,6 +189,18 @@ if __name__ == "__main__":
 }`
         };
 
+        // Cập nhật tab active
+        function setActiveTab(activeTab) {
+            const tabs = document.querySelectorAll('.tablinks');
+            tabs.forEach(tab => {
+                if (tab.dataset.tab === activeTab) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
         document.getElementById('filter').addEventListener('change', function() {
             const selectedLanguage = this.value;
             const exercises = document.querySelectorAll('.exercise');
@@ -198,15 +210,6 @@ if __name__ == "__main__":
                 } else {
                     exercise.style.display = 'none';
                 }
-            });
-        });
-
-        document.getElementById('search').addEventListener('input', function() {
-            const keyword = this.value.toLowerCase();
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                const title = exercise.querySelector('h3').textContent.toLowerCase();
-                exercise.style.display = title.includes(keyword) ? 'block' : 'none';
             });
         });
 
@@ -274,6 +277,9 @@ if __name__ == "__main__":
                 codeMirrorEditor = null;
             }
         }
+
+        // Đặt tab active khi trang được tải
+        setActiveTab('lab2');
     </script>
 </body>
 </html>
