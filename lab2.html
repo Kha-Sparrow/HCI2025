@@ -6,89 +6,15 @@
     <title>Student Coding Platform - Lab 2</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/material.min.css"> <!-- Material theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/eclipse.min.css"> <!-- Eclipse theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/ambiance.min.css"> <!-- Ambiance theme -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/clike/clike.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/java/java.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .tab {
-            overflow: hidden;
-            background-color: #333;
-        }
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            color: white;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .tab button.active {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        input[type="search"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .exercise {
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        .difficulty {
-            padding: 5px 10px;
-            border-radius: 4px;
-            color: white;
-        }
-        .easy { background-color: #5cb85c; }
-        .medium { background-color: #f0ad4e; }
-        .hard { background-color: #d9534f; }
-        .editor, .test-cases {
-            margin: 20px 0;
-        }
-        .code-editor {
-            height: 300px; /* Chiều cao của editor */
-            border: 1px solid #ccc;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
+        /* ... existing CSS styles ... */
     </style>
 </head>
 <body>
@@ -120,19 +46,19 @@
                 <input type="search" id="search" placeholder="Search exercises...">
             </div>
             <div id="exerciseList">
-                <div class="exercise" data-language="c">
+                <div class="exercise c" data-language="c">
                     <h3>Basic C Program</h3>
                     <p>Write a simple C program to calculate the sum of two numbers.</p>
                     <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise" data-language="python">
+                <div class="exercise python" data-language="python">
                     <h3>Python Loops</h3>
                     <p>Create a Python program using loops to print the first 10 prime numbers.</p>
                     <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
                     <button class="selectExercise">Select</button>
                 </div>
-                <div class="exercise" data-language="java">
+                <div class="exercise java" data-language="java">
                     <h3>Java OOP Concepts</h3>
                     <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
                     <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
@@ -152,7 +78,6 @@
             </select>
             <div class="editor">
                 <h3>Code Editor</h3>
-                <textarea id="codeEditor">// Start coding here...</textarea>
                 <div id="codeMirrorContainer" class="code-editor"></div>
                 <button id="runCode">Run Code</button>
                 <button id="clearCode">Clear Code</button>
@@ -167,88 +92,102 @@
     </div>
 
     <script>
-        document.getElementById('filter').addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                if (selectedLanguage === 'all' || exercise.dataset.language === selectedLanguage) {
-                    exercise.style.display = 'block';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
-
-        document.getElementById('search').addEventListener('input', function() {
-            const keyword = this.value.toLowerCase();
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                const title = exercise.querySelector('h3').textContent.toLowerCase();
-                exercise.style.display = title.includes(keyword) ? 'block' : 'none';
-            });
-        });
-
         const selectExerciseButtons = document.querySelectorAll('.selectExercise');
         const codingSection = document.getElementById('codingSection');
         const dashboardSection = document.getElementById('dashboardSection');
         const exerciseTitle = document.getElementById('exerciseTitle');
         const exerciseDescription = document.getElementById('exerciseDescription');
         const languageSelector = document.getElementById('languageSelector');
-        let codeMirrorEditor;
+        const codeMirrorContainer = document.getElementById('codeMirrorContainer');
+
+        let editor; // Đối tượng CodeMirror
+
+        // Mẫu mã cho từng ngôn ngữ
+        const templates = {
+            c: `#include <stdio.h>
+
+int main() {
+    // Your code here
+    return 0;
+}`,
+            python: `# Your code here`,
+            java: `public class Main {
+    public static void main(String[] args) {
+        // Your code here
+    }
+}`
+        };
 
         selectExerciseButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const exercise = this.parentElement; // Get the parent exercise div
+                const exercise = this.parentElement; // Lấy div bài tập cha
                 exerciseTitle.textContent = exercise.querySelector('h3').textContent;
                 exerciseDescription.textContent = exercise.querySelector('p').textContent;
 
-                dashboardSection.style.display = 'none'; // Hide dashboard
-                codingSection.style.display = 'block'; // Show coding section
-                
-                // Khởi tạo CodeMirror
-                if (codeMirrorEditor) {
-                    codeMirrorEditor.toTextArea();
-                }
-                codeMirrorEditor = CodeMirror(document.getElementById('codeMirrorContainer'), {
-                    value: '// Start coding here...',
-                    mode: 'text/x-csrc', // Mặc định là C
-                    theme: 'dracula',
-                    lineNumbers: true,
-                    autoCloseBrackets: true,
-                    autoFocus: true,
-                });
-                
-                // Thay đổi ngôn ngữ khi chọn
-                languageSelector.addEventListener('change', function() {
-                    const selectedLang = this.value;
-                    let mode;
-                    switch (selectedLang) {
-                        case 'c':
-                            mode = 'text/x-csrc';
-                            break;
-                        case 'python':
-                            mode = 'text/x-python';
-                            break;
-                        case 'java':
-                            mode = 'text/x-java';
-                            break;
-                    }
-                    codeMirrorEditor.setOption("mode", mode);
-                    codeMirrorEditor.setValue('// Start coding here...'); // Thiết lập mẫu mặc định
-                });
+                // Hiển thị phần coding
+                dashboardSection.style.display = 'none'; // Ẩn bảng điều khiển
+                codingSection.style.display = 'block'; // Hiển thị phần lập trình
+
+                // Khởi tạo CodeMirror với ngôn ngữ C mặc định
+                initCodeMirror('text/x-csrc', 'c'); // Thêm ngôn ngữ
             });
         });
 
+        // Khởi tạo CodeMirror
+        function initCodeMirror(mode, language) {
+            if (editor) {
+                editor.toTextArea(); // Xóa CodeMirror hiện tại nếu có
+            }
+            let theme = 'dracula'; // Mặc định là theme dracula
+            if (language === 'python') {
+                theme = 'material'; // Python dùng theme material
+            } else if (language === 'java') {
+                theme = 'eclipse'; // Java dùng theme eclipse
+            }
+            editor = CodeMirror(codeMirrorContainer, {
+                lineNumbers: true,
+                mode: mode, // Chế độ ngôn ngữ
+                theme: theme, // Giao diện
+                value: templates[language] // Tải mẫu mã
+            });
+        }
+
+        // Hàm quay lại bảng điều khiển
         function goBackToDashboard() {
-            codingSection.style.display = 'none'; // Hide coding section
-            dashboardSection.style.display = 'block'; // Show dashboard
-            
-            // Giải phóng tài nguyên của CodeMirror
-            if (codeMirrorEditor) {
-                codeMirrorEditor.toTextArea();
-                codeMirrorEditor = null;
+            codingSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+            if (editor) {
+                editor.toTextArea(); // Xóa CodeMirror
+                editor = null; // Đặt lại editor
             }
         }
+
+        // Lắng nghe sự kiện thay đổi ngôn ngữ
+        languageSelector.addEventListener('change', function () {
+            const language = this.value;
+            let mode = 'text/x-csrc'; // Mặc định là C
+            if (language === 'python') {
+                mode = 'text/x-python'; // Python
+            } else if (language === 'java') {
+                mode = 'text/x-java'; // Java
+            }
+            initCodeMirror(mode, language); // Khởi tạo lại CodeMirror với ngôn ngữ mới
+        });
+
+        // Tìm kiếm bài tập theo từ khóa
+        document.getElementById('search').addEventListener('input', function () {
+            const keyword = this.value.toLowerCase();
+            const exercises = document.querySelectorAll('.exercise');
+            exercises.forEach(exercise => {
+                const title = exercise.querySelector('h3').textContent.toLowerCase();
+                const description = exercise.querySelector('p').textContent.toLowerCase();
+                if (title.includes(keyword) || description.includes(keyword)) {
+                    exercise.style.display = 'block';
+                } else {
+                    exercise.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
