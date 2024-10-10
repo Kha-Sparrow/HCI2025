@@ -162,6 +162,20 @@
     </div>
 
     <script>
+        // Chức năng lọc theo ngôn ngữ
+        document.getElementById('filter').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            const exercises = document.querySelectorAll('.exercise');
+
+            exercises.forEach(exercise => {
+                if (selectedLanguage === 'all' || exercise.getAttribute('data-language') === selectedLanguage) {
+                    exercise.style.display = 'block'; // Hiển thị bài tập nếu ngôn ngữ khớp
+                } else {
+                    exercise.style.display = 'none'; // Ẩn bài tập nếu không khớp
+                }
+            });
+        });
+
         const selectExerciseButtons = document.querySelectorAll('.selectExercise');
         const codingSection = document.getElementById('codingSection');
         const dashboardSection = document.getElementById('dashboardSection');
