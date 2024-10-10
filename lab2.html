@@ -176,6 +176,23 @@
             });
         });
 
+        // Chức năng tìm kiếm
+        document.getElementById('search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase(); // Lấy từ khóa tìm kiếm
+            const exercises = document.querySelectorAll('.exercise');
+
+            exercises.forEach(exercise => {
+                const title = exercise.querySelector('h3').textContent.toLowerCase();
+                const description = exercise.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    exercise.style.display = 'block'; // Hiển thị bài tập nếu tìm thấy từ khóa
+                } else {
+                    exercise.style.display = 'none'; // Ẩn bài tập nếu không tìm thấy
+                }
+            });
+        });
+
         const selectExerciseButtons = document.querySelectorAll('.selectExercise');
         const codingSection = document.getElementById('codingSection');
         const dashboardSection = document.getElementById('dashboardSection');
