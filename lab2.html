@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 - Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .exercise {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .exercise-title {
+            font-weight: bold;
+        }
+        .filter {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .filter input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Available Exercises</h2>
+
+        <div class="filter">
+            <input type="text" id="search" placeholder="Search exercises..." onkeyup="filterExercises()">
+        </div>
+
+        <div id="exercises">
+            <!-- Exercise Examples -->
+            <div class="exercise">
+                <div>
+                    <div class="exercise-title">Exercise 1: FizzBuzz</div>
+                    <div>Difficulty: Easy | Language: C</div>
+                    <div>Status: Not Started</div>
+                </div>
+                <button class="button" onclick="selectExercise('Exercise 1')">Select</button>
+            </div>
+            <div class="exercise">
+                <div>
+                    <div class="exercise-title">Exercise 2: Prime Number Checker</div>
+                    <div>Difficulty: Medium | Language: Python</div>
+                    <div>Status: In Progress</div>
+                </div>
+                <button class="button" onclick="selectExercise('Exercise 2')">Select</button>
+            </div>
+            <div class="exercise">
+                <div>
+                    <div class="exercise-title">Exercise 3: Sorting Algorithm</div>
+                    <div>Difficulty: Hard | Language: Java</div>
+                    <div>Status: Completed</div>
+                </div>
+                <button class="button" onclick="selectExercise('Exercise 3')">Select</button>
+            </div>
+            <!-- Add more exercises as needed -->
+        </div>
+    </div>
+
+    <script>
+        function filterExercises() {
+            const input = document.getElementById('search');
+            const filter = input.value.toLowerCase();
+            const exercises = document.getElementById("exercises");
+            const exerciseDivs = exercises.getElementsByClassName('exercise');
+
+            for (let i = 0; i < exerciseDivs.length; i++) {
+                const title = exerciseDivs[i].getElementsByClassName("exercise-title")[0];
+                if (title) {
+                    const txtValue = title.textContent || title.innerText;
+                    exerciseDivs[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                }
+            }
+        }
+
+        function selectExercise(exerciseTitle) {
+            // Redirect to the coding environment for the selected exercise
+            window.location.href = `coding_environment.html?exercise=${encodeURIComponent(exerciseTitle)}`;
+        }
+    </script>
+
+</body>
+</html>
