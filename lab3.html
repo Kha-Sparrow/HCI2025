@@ -96,23 +96,28 @@
             margin: 20px 0;
             width: 100%; /* Make the list take full width */
         }
+        .resources-list h3 {
+            margin-bottom: 20px; /* Space between title and list */
+        }
         .resources-list ul {
             list-style: none;
             padding: 0;
-            display: flex; /* Use flexbox to arrange items */
-            justify-content: space-evenly; /* Space items evenly */
+            display: flex; /* Use flexbox to arrange items vertically */
+            flex-direction: column; /* Arrange items in a column */
+            align-items: center; /* Center items horizontally */
         }
         .resources-list ul li {
-            flex: 1; /* Make each item take equal space */
-            padding: 10px;
-            background-color: #f4f4f4;
-            margin: 5px; /* Space between items */
+            padding: 15px 30px; /* Increase padding for larger buttons */
+            background-color: #5cb85c; /* Button color */
+            margin: 10px 0; /* Space between items */
             cursor: pointer;
             transition: background-color 0.3s;
             text-align: center; /* Center text inside each item */
+            border-radius: 5px; /* Rounded corners */
+            width: 80%; /* Width for the buttons */
         }
         .resources-list ul li:hover {
-            background-color: #ddd;
+            background-color: #4cae4c; /* Darker shade on hover */
         }
         .content-section {
             display: none;
