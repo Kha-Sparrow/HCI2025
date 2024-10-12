@@ -180,7 +180,7 @@
             <div class="resources-list" id="resources-list" style="display: none;">
                 <h3>Choose Material Type</h3>
                 <ul>
-                    <li onclick="showContent('lecture')">Lecture</li> <!-- Changed Lecture Notes to Lecture -->
+                    <li onclick="showContent('lecture')">Lecture</li>
                     <li onclick="showContent('exercises')">Exercises</li>
                     <li onclick="showContent('references')">Reference Materials</li>
                 </ul>
@@ -199,7 +199,7 @@
 
         function showMaterials(subject) {
             currentSubject = subject;
-            document.getElementById('subjects-section').style.display = 'none';
+            document.getElementById('subjects-section').style.display = 'none'; // Hide subjects
             document.getElementById('materials-section').style.display = 'block';
             document.getElementById('resources-list').style.display = 'block';
         }
