@@ -50,68 +50,34 @@
             background-color: #5cb85c;
             color: white;
         }
-        .subjects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 80px; /* To account for fixed menu */
-        }
-        .subject-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 30%;
-            margin: 15px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: box-shadow 0.3s ease;
-        }
-        .subject-card:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .subject-card h3 {
-            margin: 10px 0;
-        }
-        .subject-card button {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .subject-card button:hover {
-            background-color: #4cae4c;
-        }
         .materials-section {
             display: none;
+            margin-top: 80px; /* To account for fixed menu */
         }
-        .lessons-list, .resources-list {
-            width: 25%;
-            float: left;
+        .resources-list {
+            width: 100%;
             padding-right: 10px;
         }
-        .lessons-list ul, .resources-list ul {
+        .resources-list ul {
             list-style: none;
             padding: 0;
         }
-        .lessons-list ul li, .resources-list ul li {
+        .resources-list ul li {
             padding: 10px;
             background-color: #f4f4f4;
             margin-bottom: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .lessons-list ul li:hover, .resources-list ul li:hover {
+        .resources-list ul li:hover {
             background-color: #ddd;
         }
         .content-section {
-            width: 70%;
-            float: right;
+            width: 100%;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
         }
         .back-button {
             margin-top: 20px;
@@ -139,45 +105,8 @@
     <div class="container">
         <h2>Study Materials</h2>
 
-        <div id="subjects-section" class="subjects">
-            <div class="subject-card">
-                <h3>Django Python</h3>
-                <button onclick="showMaterials('django')">View Materials</button>
-            </div>
-            <div class="subject-card">
-                <h3>Java Programming</h3>
-                <button onclick="showMaterials('java')">View Materials</button>
-            </div>
-            <div class="subject-card">
-                <h3>Maths</h3>
-                <button onclick="showMaterials('maths')">View Materials</button>
-            </div>
-            <div class="subject-card">
-                <h3>Chemistry</h3>
-                <button onclick="showMaterials('chemistry')">View Materials</button>
-            </div>
-            <div class="subject-card">
-                <h3>Biology</h3>
-                <button onclick="showMaterials('biology')">View Materials</button>
-            </div>
-            <div class="subject-card">
-                <h3>Physics</h3>
-                <button onclick="showMaterials('physics')">View Materials</button>
-            </div>
-        </div>
-
         <div id="materials-section" class="materials-section">
-            <div class="lessons-list">
-                <ul>
-                    <li onclick="showResources('django')">1. Django Python</li>
-                    <li onclick="showResources('java')">2. Java Programming</li>
-                    <li onclick="showResources('maths')">3. Maths</li>
-                    <li onclick="showResources('chemistry')">4. Chemistry</li>
-                    <li onclick="showResources('biology')">5. Biology</li>
-                    <li onclick="showResources('physics')">6. Physics</li>
-                </ul>
-            </div>
-            <div class="resources-list" id="resources-list" style="display: none;">
+            <div class="resources-list" id="resources-list">
                 <h3>Choose Material Type</h3>
                 <ul>
                     <li onclick="showContent('lecture')">Lecture</li>
@@ -185,41 +114,30 @@
                     <li onclick="showContent('references')">Reference Materials</li>
                 </ul>
             </div>
-            <div class="content-section" id="content-section" style="display: none;">
+            <div class="content-section" id="content-section">
                 <h3>Lesson Content</h3>
                 <p>Select a material type to view its content.</p>
             </div>
-            <a class="back-button" href="#" onclick="goBack()">Back to Subjects</a>
+            <a class="back-button" href="#" onclick="goBack()">Back</a>
         </div>
 
     </div>
 
     <script>
-        let currentSubject = '';
-
-        function showMaterials(subject) {
-            currentSubject = subject;
-            document.getElementById('subjects-section').style.display = 'none'; // Hide subjects
+        function showMaterials() {
             document.getElementById('materials-section').style.display = 'block';
             document.getElementById('resources-list').style.display = 'block';
         }
 
-        function showResources(subject) {
-            currentSubject = subject;
-            document.getElementById('resources-list').style.display = 'block';
-            document.getElementById('content-section').style.display = 'none';
-        }
-
         function showContent(contentType) {
             const contentSection = document.getElementById('content-section');
-            contentSection.innerHTML = '<h3>' + currentSubject + ': ' + contentType + '</h3><p>This is the content for ' + contentType + '.</p>';
+            contentSection.innerHTML = '<h3>Content: ' + contentType + '</h3><p>This is the content for ' + contentType + '.</p>';
             contentSection.style.display = 'block';
             document.getElementById('resources-list').style.display = 'none';
         }
 
         function goBack() {
             document.getElementById('materials-section').style.display = 'none';
-            document.getElementById('subjects-section').style.display = 'flex';
         }
     </script>
 
