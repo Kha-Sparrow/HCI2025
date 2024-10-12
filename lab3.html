@@ -91,17 +91,22 @@
         .resources-list {
             display: inline-block; /* Make the list an inline block for centering */
             margin: 20px 0;
+            width: 100%; /* Make the list take full width */
         }
         .resources-list ul {
             list-style: none;
             padding: 0;
+            display: flex; /* Use flexbox to arrange items */
+            justify-content: space-evenly; /* Space items evenly */
         }
         .resources-list ul li {
+            flex: 1; /* Make each item take equal space */
             padding: 10px;
             background-color: #f4f4f4;
-            margin-bottom: 5px;
+            margin: 5px; /* Space between items */
             cursor: pointer;
             transition: background-color 0.3s;
+            text-align: center; /* Center text inside each item */
         }
         .resources-list ul li:hover {
             background-color: #ddd;
@@ -138,32 +143,32 @@
     </div>
 
     <div class="container">
-        <h2>Study Materials</h2>
+        <h2 id="subject-title">Study Materials</h2> <!-- Changed to have an ID -->
 
         <div id="subjects-section" class="subjects">
             <div class="subject-card">
                 <h3>Django Python</h3>
-                <button onclick="showMaterials('django')">View Materials</button>
+                <button onclick="showMaterials('Django Python')">View Materials</button>
             </div>
             <div class="subject-card">
                 <h3>Java Programming</h3>
-                <button onclick="showMaterials('java')">View Materials</button>
+                <button onclick="showMaterials('Java Programming')">View Materials</button>
             </div>
             <div class="subject-card">
                 <h3>Maths</h3>
-                <button onclick="showMaterials('maths')">View Materials</button>
+                <button onclick="showMaterials('Maths')">View Materials</button>
             </div>
             <div class="subject-card">
                 <h3>Chemistry</h3>
-                <button onclick="showMaterials('chemistry')">View Materials</button>
+                <button onclick="showMaterials('Chemistry')">View Materials</button>
             </div>
             <div class="subject-card">
                 <h3>Biology</h3>
-                <button onclick="showMaterials('biology')">View Materials</button>
+                <button onclick="showMaterials('Biology')">View Materials</button>
             </div>
             <div class="subject-card">
                 <h3>Physics</h3>
-                <button onclick="showMaterials('physics')">View Materials</button>
+                <button onclick="showMaterials('Physics')">View Materials</button>
             </div>
         </div>
 
@@ -190,6 +195,7 @@
 
         function showMaterials(subject) {
             currentSubject = subject;
+            document.getElementById('subject-title').textContent = currentSubject; // Update the title to the subject name
             document.getElementById('subjects-section').style.display = 'none';
             document.getElementById('materials-section').style.display = 'block';
             document.getElementById('resources-list').style.display = 'block';
@@ -205,6 +211,7 @@
         function goBack() {
             document.getElementById('materials-section').style.display = 'none';
             document.getElementById('subjects-section').style.display = 'flex';
+            document.getElementById('subject-title').textContent = 'Study Materials'; // Reset title to default
         }
     </script>
 
