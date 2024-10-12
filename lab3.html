@@ -86,36 +86,37 @@
         }
         .materials-section {
             display: none;
+            text-align: center; /* Center align the content */
         }
-        .lessons-list, .resources-list {
-            width: 25%;
-            float: left;
-            padding-right: 10px;
+        .resources-list {
+            display: inline-block; /* Make the list an inline block for centering */
+            margin: 20px 0;
         }
-        .lessons-list ul, .resources-list ul {
+        .resources-list ul {
             list-style: none;
             padding: 0;
         }
-        .lessons-list ul li, .resources-list ul li {
+        .resources-list ul li {
             padding: 10px;
             background-color: #f4f4f4;
             margin-bottom: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .lessons-list ul li:hover, .resources-list ul li:hover {
+        .resources-list ul li:hover {
             background-color: #ddd;
         }
         .content-section {
-            width: 70%;
-            float: right;
+            display: none;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
         .back-button {
-            margin-top: 20px;
-            display: inline-block;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
             background-color: #333;
             color: white;
             padding: 10px 20px;
@@ -167,10 +168,10 @@
         </div>
 
         <div id="materials-section" class="materials-section">
-            <div class="resources-list" id="resources-list" style="display: none;">
+            <div class="resources-list" id="resources-list">
                 <h3>Choose Material Type</h3>
                 <ul>
-                    <li onclick="showContent('lecture')">Lecture</li> <!-- Changed Lecture Notes to Lecture -->
+                    <li onclick="showContent('lecture')">Lecture</li>
                     <li onclick="showContent('exercises')">Exercises</li>
                     <li onclick="showContent('references')">Reference Materials</li>
                 </ul>
@@ -192,12 +193,6 @@
             document.getElementById('subjects-section').style.display = 'none';
             document.getElementById('materials-section').style.display = 'block';
             document.getElementById('resources-list').style.display = 'block';
-        }
-
-        function showResources(subject) {
-            currentSubject = subject;
-            document.getElementById('resources-list').style.display = 'block';
-            document.getElementById('content-section').style.display = 'none';
         }
 
         function showContent(contentType) {
