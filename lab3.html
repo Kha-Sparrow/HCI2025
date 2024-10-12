@@ -75,7 +75,7 @@
             margin: 10px 0;
         }
         .subject-card button {
-            background-color: #5cb85c;
+            background-color: #5cb85c; /* Retain this for the subject card buttons */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -107,17 +107,18 @@
             align-items: center; /* Center items horizontally */
         }
         .resources-list ul li {
-            padding: 15px 30px; /* Increase padding for larger buttons */
-            background-color: #5cb85c; /* Button color */
+            padding: 22.5px 15px; /* Increase vertical padding by 50% and reduce horizontal padding */
+            background-color: transparent; /* Remove the background color */
             margin: 10px 0; /* Space between items */
             cursor: pointer;
             transition: background-color 0.3s;
             text-align: center; /* Center text inside each item */
             border-radius: 5px; /* Rounded corners */
-            width: 80%; /* Width for the buttons */
+            width: 40%; /* Reduce width by 50% */
+            border: 1px solid #ddd; /* Optional: Add a border for visibility */
         }
         .resources-list ul li:hover {
-            background-color: #4cae4c; /* Darker shade on hover */
+            background-color: #ddd; /* Change background color on hover */
         }
         .content-section {
             display: none;
