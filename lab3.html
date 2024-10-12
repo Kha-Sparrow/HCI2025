@@ -12,22 +12,13 @@
             padding: 0;
         }
         .container {
-            display: flex; /* Flexbox for two-column layout */
-            margin: 50px auto;
             max-width: 1000px;
+            margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .sidebar {
-            width: 30%; /* Sidebar width */
-            padding-right: 20px; /* Space between sidebar and content */
-            border-right: 1px solid #ddd; /* Border between sidebar and content */
-        }
-        .content {
-            width: 70%; /* Content width */
-            padding-left: 20px; /* Space between content and sidebar */
+            position: relative; /* Added position relative to contain absolute children */
         }
         h2 {
             text-align: center;
@@ -70,8 +61,8 @@
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
-            width: 100%;
-            margin: 15px 0; /* Margin top and bottom */
+            width: 30%;
+            margin: 15px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -84,7 +75,7 @@
             margin: 10px 0;
         }
         .subject-card button {
-            background-color: #5cb85c;
+            background-color: #5cb85c; /* Retain this for the subject card buttons */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -96,6 +87,7 @@
         }
         .materials-section {
             display: none;
+            text-align: center; /* Center align the content */
             height: calc(100vh - 150px); /* Full height minus header and padding */
             overflow: auto; /* Allow scrolling if content is too large */
         }
@@ -134,12 +126,10 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
-            height: calc(100vh - 150px); /* Full height minus header and padding */
-            overflow-y: auto; /* Enable vertical scrolling */
         }
         .back-button {
             position: absolute; /* Changed to absolute for positioning */
-            bottom: 20px; /* Moved up to give more space above */
+            bottom: 60px; /* Moved up to give more space above */
             left: 20px;
             background-color: #333;
             color: white;
@@ -162,53 +152,51 @@
     </div>
 
     <div class="container">
-        <div class="sidebar">
-            <h2>Lessons</h2>
-            <div class="subjects">
-                <div class="subject-card">
-                    <h3>1. Introduction</h3>
-                    <button onclick="showMaterials('Introduction')">View Lecture</button>
-                </div>
-                <div class="subject-card">
-                    <h3>2. Setting Up the Development Environment</h3>
-                    <button onclick="showMaterials('Setting Up the Development Environment')">View Lecture</button>
-                </div>
-                <div class="subject-card">
-                    <h3>3. Django Basic</h3>
-                    <button onclick="showMaterials('Django Basic')">View Lecture</button>
-                </div>
-                <div class="subject-card">
-                    <h3>4. Django Advanced Concepts</h3>
-                    <button onclick="showMaterials('Django Advanced Concepts')">View Lecture</button>
-                </div>
-                <div class="subject-card">
-                    <h3>5. Pythonanywhere</h3>
-                    <button onclick="showMaterials('Pythonanywhere')">View Lecture</button>
-                </div>
-                <div class="subject-card">
-                    <h3>6. Syllabus</h3>
-                    <button onclick="showMaterials('Syllabus')">View Lecture</button>
-                </div>
+        <h2 id="subject-title">Study Materials</h2> <!-- Changed to have an ID -->
+
+        <div id="subjects-section" class="subjects">
+            <div class="subject-card">
+                <h3>Django Python</h3>
+                <button onclick="showMaterials('Django Python')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Java Programming</h3>
+                <button onclick="showMaterials('Java Programming')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Maths</h3>
+                <button onclick="showMaterials('Maths')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Chemistry</h3>
+                <button onclick="showMaterials('Chemistry')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Biology</h3>
+                <button onclick="showMaterials('Biology')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Physics</h3>
+                <button onclick="showMaterials('Physics')">View Materials</button>
             </div>
         </div>
-        <div class="content">
-            <h2 id="subject-title">Lecture Content</h2>
-            <div id="materials-section" class="materials-section">
-                <div class="resources-list" id="resources-list">
-                    <h3>Choose Material Type</h3>
-                    <ul>
-                        <li onclick="showContent('lecture')">Lecture</li>
-                        <li onclick="showContent('exercises')">Exercises</li>
-                        <li onclick="showContent('references')">Reference Materials</li>
-                    </ul>
-                </div>
-                <div class="content-section" id="content-section" style="display: none;">
-                    <h3>Lesson Content</h3>
-                    <p>Select a material type to view its content.</p>
-                </div>
-                <a class="back-button" href="#" onclick="goBack()">Back to list</a>
+
+        <div id="materials-section" class="materials-section">
+            <div class="resources-list" id="resources-list">
+                <h3>Choose Material Type</h3>
+                <ul>
+                    <li onclick="showContent('lecture')">Lecture</li>
+                    <li onclick="showContent('exercises')">Exercises</li>
+                    <li onclick="showContent('references')">Reference Materials</li>
+                </ul>
             </div>
+            <div class="content-section" id="content-section" style="display: none;">
+                <h3>Lesson Content</h3>
+                <p>Select a material type to view its content.</p>
+            </div>
+            <a class="back-button" href="#" onclick="goBack()">Back to Subjects</a>
         </div>
+
     </div>
 
     <script>
@@ -217,22 +205,22 @@
         function showMaterials(subject) {
             currentSubject = subject;
             document.getElementById('subject-title').textContent = currentSubject; // Update the title to the subject name
+            document.getElementById('subjects-section').style.display = 'none';
             document.getElementById('materials-section').style.display = 'block';
             document.getElementById('resources-list').style.display = 'block';
-            document.getElementById('content-section').style.display = 'none';
         }
 
-        function showContent(type) {
-            document.getElementById('resources-list').style.display = 'none';
-            document.getElementById('content-section').style.display = 'block';
+        function showContent(contentType) {
             const contentSection = document.getElementById('content-section');
-            contentSection.innerHTML = `<h3>${currentSubject} - ${type.charAt(0).toUpperCase() + type.slice(1)}</h3><p>Content for ${type} of ${currentSubject}.</p>`;
+            contentSection.innerHTML = '<h3>' + currentSubject + ': ' + contentType + '</h3><p>This is the content for ' + contentType + '.</p>';
+            contentSection.style.display = 'block';
+            document.getElementById('resources-list').style.display = 'none';
         }
 
         function goBack() {
             document.getElementById('materials-section').style.display = 'none';
-            document.getElementById('resources-list').style.display = 'block';
-            document.getElementById('content-section').style.display = 'none';
+            document.getElementById('subjects-section').style.display = 'flex';
+            document.getElementById('subject-title').textContent = 'Study Materials'; // Reset title to default
         }
     </script>
 
