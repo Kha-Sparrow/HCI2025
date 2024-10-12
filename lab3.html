@@ -27,6 +27,11 @@
             background-color: #333;
             text-align: center;
             margin-bottom: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
         }
         .tab button {
             background-color: inherit;
@@ -49,6 +54,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            margin-top: 80px; /* To account for fixed menu */
         }
         .subject-card {
             background-color: #fff;
@@ -63,10 +69,6 @@
         }
         .subject-card:hover {
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .subject-card img {
-            width: 50px;
-            margin-bottom: 10px;
         }
         .subject-card h3 {
             margin: 10px 0;
@@ -124,24 +126,25 @@
 </head>
 <body>
 
+    <div class="tab">
+        <button class="tablinks" onclick="window.location.href='home.html'">Home</button>
+        <a href="about.html"><button class="tablinks">About</button></a>
+        <button class="tablinks" onclick="window.location.href='lab1.html'">Lab 1</button>
+        <button class="tablinks" onclick="window.location.href='lab2.html'">Lab 2</button>
+        <button class="tablinks active" onclick="window.location.href='lab3.html'">Lab 3</button>
+        <button class="tablinks" onclick="window.location.href='lab4.html'">Lab 4</button>
+        <button class="tablinks" onclick="window.location.href='lab5.html'">Lab 5</button>
+    </div>
+
     <div class="container">
         <h2>Study Materials</h2>
 
-        <div class="tab">
-            <button class="tablinks" onclick="window.location.href='home.html'">Home</button>
-            <a href="about.html"><button class="tablinks">About</button></a>
-            <button class="tablinks active" onclick="window.location.href='lab3.html'">Lab 3</button>
-            <!-- Add other lab buttons as needed -->
-        </div>
-
         <div id="subjects-section" class="subjects">
             <div class="subject-card">
-                <img src="book-icon.png" alt="Book Icon">
                 <h3>Django Python</h3>
                 <button onclick="showMaterials('django')">View Materials</button>
             </div>
             <div class="subject-card">
-                <img src="book-icon.png" alt="Book Icon">
                 <h3>Java Programming</h3>
                 <button onclick="showMaterials('java')">View Materials</button>
             </div>
@@ -185,4 +188,3 @@
 
 </body>
 </html>
-
