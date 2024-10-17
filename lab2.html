@@ -167,22 +167,22 @@
 
     <script>
         const templates = {
-            c: #include <stdio.h>
+            c: `#include <stdio.h>
 
 int main() {
     // Your code here
     return 0;
-},
-            python: def main():
+}`,
+            python: `def main():
     # Your code here
 
 if __name__ == "__main__":
-    main(),
-            java: public class Main {
+    main()`,
+            java: `public class Main {
     public static void main(String[] args) {
         // Your code here
     }
-}
+}`
         };
 
         // Cập nhật tab active
