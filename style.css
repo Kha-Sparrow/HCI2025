@@ -1,79 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4; /* Cập nhật lại màu nền cho giống với lab2 cũ */
     margin: 0;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-}
-
-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
+    padding: 0;
 }
 
 .tab {
     overflow: hidden;
     background-color: #333;
-    margin-bottom: 20px;
 }
 
 .tab button {
@@ -95,4 +29,72 @@ button:hover {
 .tab button.active {
     background-color: #5cb85c;
     color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.exercise {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.difficulty {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+}
+
+.easy {
+    background-color: #5cb85c;
+}
+
+.medium {
+    background-color: #f0ad4e;
+}
+
+.hard {
+    background-color: #d9534f;
+}
+
+.editor, .test-cases {
+    margin: 20px 0;
+}
+
+.code-editor {
+    height: 300px; /* Chiều cao của editor */
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5cb85c; /* Đảm bảo màu nền cho nút giống như cũ */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #4cae4c; /* Đảm bảo màu nền khi hover giống như cũ */
 }
