@@ -220,7 +220,7 @@
 
             courses.forEach((course, index) => {
                 const row = document.createElement("tr");
-                row.innerHTML = 
+                row.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${course.name}</td>
                     <td>${course.instructor}</td>
@@ -229,7 +229,7 @@
                         <button onclick="editCourse(${index})">Chỉnh Sửa</button>
                         <button onclick="deleteCourse(${index})">Xóa</button>
                     </td>
-                ;
+                `;
                 courseList.appendChild(row);
             });
         }
