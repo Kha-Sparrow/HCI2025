@@ -3,160 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Coding Platform - Lab 2</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/dracula.min.css">
-    <link rel="stylesheet" href="style.css"> <!-- Thêm link đến file style.css -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/clike/clike.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/java/java.min.js"></script>
+    <title>Lab 3 - Study Materials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added position relative to contain absolute children */
+        }
+        h2 {
+            text-align: center;
+        }
+        .tab {
+            overflow: hidden;
+            background-color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            color: white;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .tab button.active {
+            background-color: #5cb85c;
+            color: white;
+        }
+        .subjects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 80px; /* To account for fixed menu */
+        }
+        .subject-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 30%;
+            margin: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+        .subject-card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .subject-card h3 {
+            margin: 10px 0;
+        }
+        .subject-card button {
+            background-color: #5cb85c; /* Retain this for the subject card buttons */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .subject-card button:hover {
+            background-color: #4cae4c;
+        }
+        .materials-section {
+            display: none;
+            text-align: center; /* Center align the content */
+            height: calc(100vh - 150px); /* Full height minus header and padding */
+            overflow: auto; /* Allow scrolling if content is too large */
+        }
+        .resources-list {
+            display: inline-block; /* Make the list an inline block for centering */
+            margin: 20px 0;
+            width: 100%; /* Make the list take full width */
+        }
+        .resources-list h3 {
+            margin-bottom: 20px; /* Space between title and list */
+        }
+        .resources-list ul {
+            list-style: none;
+            padding: 0;
+            display: flex; /* Use flexbox to arrange items vertically */
+            flex-direction: column; /* Arrange items in a column */
+            align-items: center; /* Center items horizontally */
+        }
+        .resources-list ul li {
+            padding: 22.5px 15px; /* Increase vertical padding by 50% and reduce horizontal padding */
+            background-color: transparent; /* Remove the background color */
+            margin: 10px 0; /* Space between items */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center; /* Center text inside each item */
+            border-radius: 5px; /* Rounded corners */
+            width: 40%; /* Reduce width by 50% */
+            border: 1px solid #ddd; /* Optional: Add a border for visibility */
+        }
+        .resources-list ul li:hover {
+            background-color: #ddd; /* Change background color on hover */
+        }
+        .content-section {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .back-button {
+            position: absolute; /* Changed to absolute for positioning */
+            bottom: 60px; /* Moved up to give more space above */
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="tab" id="tabMenu">
-        <a href="home.html"><button class="tablinks" data-tab="home">Home</button></a>
-        <a href="about.html"><button class="tablinks" data-tab="about">About</button></a>
-        <a href="lab1.html"><button class="tablinks" data-tab="lab1">Lab1</button></a>
-        <a href="lab2.html"><button class="tablinks" data-tab="lab2">Lab2</button></a>
-        <a href="lab3.html"><button class="tablinks" data-tab="lab3">Lab3</button></a>
-        <a href="lab4.html"><button class="tablinks" data-tab="lab4">Lab4</button></a>
-        <a href="lab5.html"><button class="tablinks" data-tab="lab5">Lab5</button></a>
+    <div class="tab">
+        <button class="tablinks" onclick="window.location.href='home.html'">Home</button>
+        <a href="about.html"><button class="tablinks">About</button></a>
+        <button class="tablinks" onclick="window.location.href='lab1.html'">Lab 1</button>
+        <button class="tablinks" onclick="window.location.href='lab2.html'">Lab 2</button>
+        <button class="tablinks active" onclick="window.location.href='lab3.html'">Lab 3</button>
+        <button class="tablinks" onclick="window.location.href='lab4.html'">Lab 4</button>
+        <button class="tablinks" onclick="window.location.href='lab5.html'">Lab 5</button>
     </div>
 
     <div class="container">
-        <div class="dashboard" id="dashboardSection">
-            <h2>Available Exercises</h2>
-            <div>
-                <label for="filter">Filter by language: </label>
-                <select id="filter">
-                    <option value="all">All</option>
-                    <option value="c">C</option>
-                    <option value="python">Python</option>
-                    <option value="java">Java</option>
-                </select>
+        <h2 id="subject-title">Study Materials</h2> <!-- Changed to have an ID -->
+
+        <div id="subjects-section" class="subjects">
+            <div class="subject-card">
+                <h3>Django Python</h3>
+                <button onclick="showMaterials('Django Python')">View Materials</button>
             </div>
-            <div>
-                <label for="search">Search by keyword: </label>
-                <input type="search" id="search" placeholder="Search exercises...">
+            <div class="subject-card">
+                <h3>Java Programming</h3>
+                <button onclick="showMaterials('Java Programming')">View Materials</button>
             </div>
-            <div id="exerciseList">
-                <div class="exercise" data-language="c">
-                    <h3>Basic C Program</h3>
-                    <p>Write a simple C program to calculate the sum of two numbers.</p>
-                    <small>Difficulty: <span class="difficulty easy">Easy</span> | Time limit: 15 minutes</small>
-                    <button class="selectExercise">Select</button>
-                </div>
-                <div class="exercise" data-language="python">
-                    <h3>Python Loops</h3>
-                    <p>Create a Python program using loops to print the first 10 prime numbers.</p>
-                    <small>Difficulty: <span class="difficulty medium">Medium</span> | Time limit: 20 minutes</small>
-                    <button class="selectExercise">Select</button>
-                </div>
-                <div class="exercise" data-language="java">
-                    <h3>Java OOP Concepts</h3>
-                    <p>Implement a Java class demonstrating the use of inheritance and polymorphism.</p>
-                    <small>Difficulty: <span class="difficulty hard">Hard</span> | Time limit: 30 minutes</small>
-                    <button class="selectExercise">Select</button>
-                </div>
+            <div class="subject-card">
+                <h3>Maths</h3>
+                <button onclick="showMaterials('Maths')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Chemistry</h3>
+                <button onclick="showMaterials('Chemistry')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Biology</h3>
+                <button onclick="showMaterials('Biology')">View Materials</button>
+            </div>
+            <div class="subject-card">
+                <h3>Physics</h3>
+                <button onclick="showMaterials('Physics')">View Materials</button>
             </div>
         </div>
 
-        <div class="coding-environment" id="codingSection" style="display: none;">
-            <h2>Exercise: <span id="exerciseTitle"></span></h2>
-            <p id="exerciseDescription"></p>
-            <label for="languageSelector">Select Language:</label>
-            <select id="languageSelector">
-                <option value="c">C</option>
-                <option value="python">Python</option>
-                <option value="java">Java</option>
-            </select>
-            <div class="editor">
-                <h3>Code Editor</h3>
-                <div id="codeMirrorContainer" class="code-editor"></div>
-                <button id="runCode">Run Code</button>
-                <button id="clearCode">Clear Code</button>
-                <button id="submitCode">Submit Code</button>
+        <div id="materials-section" class="materials-section">
+            <div class="resources-list" id="resources-list">
+                <h3>Choose Material Type</h3>
+                <ul>
+                    <li onclick="showContent('lecture')">Lecture</li>
+                    <li onclick="showContent('exercises')">Exercises</li>
+                    <li onclick="showContent('references')">Reference Materials</li>
+                </ul>
             </div>
-            <div class="test-cases">
-                <h3>Test Cases</h3>
-                <p id="testCaseResults">No test cases run yet.</p>
+            <div class="content-section" id="content-section" style="display: none;">
+                <h3>Lesson Content</h3>
+                <p>Select a material type to view its content.</p>
             </div>
-            <button onclick="goBackToDashboard()">Back to Exercise Selection</button>
+            <a class="back-button" href="#" onclick="goBack()">Back to Subjects</a>
         </div>
+
     </div>
 
     <script>
-        const templates = {
-            c: `#include <stdio.h>
+        let currentSubject = '';
 
-int main() {
-    // Your code here
-    return 0;
-}`,
-            python: `def main():
-    # Your code here
-
-if __name__ == "__main__":
-    main()`,
-            java: `public class Main {
-    public static void main(String[] args) {
-        // Your code here
-    }
-}`
-        };
-
-        function setActiveTab(activeTab) {
-            const tabs = document.querySelectorAll('.tablinks');
-            tabs.forEach(tab => {
-                if (tab.dataset.tab === activeTab) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            });
+        function showMaterials(subject) {
+            currentSubject = subject;
+            document.getElementById('subject-title').textContent = currentSubject; // Update the title to the subject name
+            document.getElementById('subjects-section').style.display = 'none';
+            document.getElementById('materials-section').style.display = 'block';
+            document.getElementById('resources-list').style.display = 'block';
         }
 
-        document.getElementById('filter').addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            const exercises = document.querySelectorAll('.exercise');
-            exercises.forEach(exercise => {
-                if (selectedLanguage === 'all' || exercise.dataset.language === selectedLanguage) {
-                    exercise.style.display = 'block';
-                } else {
-                    exercise.style.display = 'none';
-                }
-            });
-        });
+        function showContent(contentType) {
+            const contentSection = document.getElementById('content-section');
+            contentSection.innerHTML = '<h3>' + currentSubject + ': ' + contentType + '</h3><p>This is the content for ' + contentType + '.</p>';
+            contentSection.style.display = 'block';
+            document.getElementById('resources-list').style.display = 'none';
+        }
 
-        document.querySelectorAll('.selectExercise').forEach(button => {
-            button.addEventListener('click', function() {
-                const exercise = this.parentElement;
-                document.getElementById('exerciseTitle').textContent = exercise.querySelector('h3').textContent;
-                document.getElementById('exerciseDescription').textContent = exercise.querySelector('p').textContent;
-
-                const language = exercise.dataset.language;
-                document.getElementById('languageSelector').value = language;
-                document.getElementById('codeMirrorContainer').innerHTML = ''; // Clear previous editor
-
-                const editor = CodeMirror(document.getElementById('codeMirrorContainer'), {
-                    lineNumbers: true,
-                    mode: language === 'c' ? 'text/x-csrc' : language === 'python' ? 'text/x-python' : 'text/x-java',
-                    theme: 'dracula',
-                    value: templates[language]
-                });
-
-                document.getElementById('dashboardSection').style.display = 'none';
-                document.getElementById('codingSection').style.display = 'block';
-                setActiveTab('lab2');
-            });
-        });
-
-        function goBackToDashboard() {
-            document.getElementById('codingSection').style.display = 'none';
-            document.getElementById('dashboardSection').style.display = 'block';
-            setActiveTab('lab2');
+        function goBack() {
+            document.getElementById('materials-section').style.display = 'none';
+            document.getElementById('subjects-section').style.display = 'flex';
+            document.getElementById('subject-title').textContent = 'Study Materials'; // Reset title to default
         }
     </script>
+
 </body>
 </html>
