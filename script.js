@@ -43,5 +43,13 @@ function goBack() {
     document.getElementById('materials-section').style.display = 'block';
     document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
     document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi quay lại
-    document.getElementById('subjects-section').style.display = 'block'; // Hiện lại danh sách các môn học
+}
+
+// Hàm trở lại trang chủ chứa các môn học
+function goBackToSubjects() {
+    document.getElementById('subjects-section').style.display = 'block';
+    document.getElementById('sidebar-content-wrapper').style.display = 'none';
+    document.getElementById('materials-section').style.display = 'none';
+    document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
+    document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi trở về
 }
