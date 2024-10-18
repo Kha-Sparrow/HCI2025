@@ -6,13 +6,14 @@ function showMaterials(subject) {
     document.getElementById('subject-title').textContent = currentSubject;
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('materials-section').style.display = 'block';
+    document.getElementById('sidebar-content-wrapper').style.display = 'none'; // Ẩn sidebar
     document.getElementById('back-button').style.display = 'none'; // Ẩn nút back ban đầu
 }
 
 function showMaterialType(type) {
     materialType = type;
     document.getElementById('materials-section').style.display = 'none';
-    document.getElementById('sidebar-content-wrapper').style.display = 'flex';
+    document.getElementById('sidebar-content-wrapper').style.display = 'flex'; // Hiện sidebar
     const materialList = document.getElementById('material-list');
     
     // Giả lập danh sách tài liệu liên quan
@@ -38,18 +39,10 @@ function showContent(material) {
     contentWindow.innerHTML = '<h3>' + materialType + ': ' + material + '</h3><p>This is the content for ' + material + '.</p>';
 }
 
-function goBack() {
-    document.getElementById('sidebar-content-wrapper').style.display = 'none';
-    document.getElementById('materials-section').style.display = 'block';
-    document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
-    document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi quay lại
-}
-
-// Hàm trở lại trang chủ chứa các môn học
 function goBackToSubjects() {
-    document.getElementById('subjects-section').style.display = 'block';
-    document.getElementById('sidebar-content-wrapper').style.display = 'none';
-    document.getElementById('materials-section').style.display = 'none';
+    document.getElementById('subjects-section').style.display = 'block'; // Hiện lại danh sách môn
+    document.getElementById('sidebar-content-wrapper').style.display = 'none'; // Ẩn sidebar
+    document.getElementById('materials-section').style.display = 'none'; // Ẩn phần chọn loại tài liệu
     document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
     document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi trở về
 }
