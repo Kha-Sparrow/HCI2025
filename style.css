@@ -97,9 +97,4 @@ h2 {
     width: 75%;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.back-button {
-    display: none; /* Ẩn nút back ban đầu */
-    margin-top: 20px;
-}
+    box-shadow: 0 0 10px rgba(0, 0, 0, 
