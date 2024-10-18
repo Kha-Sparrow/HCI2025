@@ -4,140 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab 3 - Study Materials</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            position: relative; /* Added position relative to contain absolute children */
-        }
-        h2 {
-            text-align: center;
-        }
-        .tab {
-            overflow: hidden;
-            background-color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 9999;
-        }
-        .tab button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            color: white;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .tab button.active {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .subjects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 80px; /* To account for fixed menu */
-        }
-        .subject-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 30%;
-            margin: 15px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: box-shadow 0.3s ease;
-        }
-        .subject-card:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .subject-card h3 {
-            margin: 10px 0;
-        }
-        .subject-card button {
-            background-color: #5cb85c; /* Retain this for the subject card buttons */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .subject-card button:hover {
-            background-color: #4cae4c;
-        }
-        .materials-section {
-            display: none;
-            text-align: center; /* Center align the content */
-            height: calc(100vh - 150px); /* Full height minus header and padding */
-            overflow: auto; /* Allow scrolling if content is too large */
-        }
-        .resources-list {
-            display: inline-block; /* Make the list an inline block for centering */
-            margin: 20px 0;
-            width: 100%; /* Make the list take full width */
-        }
-        .resources-list h3 {
-            margin-bottom: 20px; /* Space between title and list */
-        }
-        .resources-list ul {
-            list-style: none;
-            padding: 0;
-            display: flex; /* Use flexbox to arrange items vertically */
-            flex-direction: column; /* Arrange items in a column */
-            align-items: center; /* Center items horizontally */
-        }
-        .resources-list ul li {
-            padding: 22.5px 15px; /* Increase vertical padding by 50% and reduce horizontal padding */
-            background-color: transparent; /* Remove the background color */
-            margin: 10px 0; /* Space between items */
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-align: center; /* Center text inside each item */
-            border-radius: 5px; /* Rounded corners */
-            width: 40%; /* Reduce width by 50% */
-            border: 1px solid #ddd; /* Optional: Add a border for visibility */
-        }
-        .resources-list ul li:hover {
-            background-color: #ddd; /* Change background color on hover */
-        }
-        .content-section {
-            display: none;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .back-button {
-            position: absolute; /* Changed to absolute for positioning */
-            bottom: 60px; /* Moved up to give more space above */
-            left: 20px;
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -152,8 +19,9 @@
     </div>
 
     <div class="container">
-        <h2 id="subject-title">Study Materials</h2> <!-- Changed to have an ID -->
+        <h2 id="subject-title">Study Materials</h2>
 
+        <!-- Phần chọn môn học -->
         <div id="subjects-section" class="subjects">
             <div class="subject-card">
                 <h3>Django Python</h3>
@@ -181,48 +49,34 @@
             </div>
         </div>
 
+        <!-- Phần chọn loại tài liệu -->
         <div id="materials-section" class="materials-section">
-            <div class="resources-list" id="resources-list">
+            <div class="resources-list">
                 <h3>Choose Material Type</h3>
                 <ul>
-                    <li onclick="showContent('lecture')">Lecture</li>
-                    <li onclick="showContent('exercises')">Exercises</li>
-                    <li onclick="showContent('references')">Reference Materials</li>
+                    <li onclick="showMaterialType('Lecture')">Lecture</li>
+                    <li onclick="showMaterialType('Exercises')">Exercises</li>
+                    <li onclick="showMaterialType('Reference Materials')">Reference Materials</li>
                 </ul>
             </div>
-            <div class="content-section" id="content-section" style="display: none;">
-                <h3>Lesson Content</h3>
-                <p>Select a material type to view its content.</p>
-            </div>
-            <a class="back-button" href="#" onclick="goBack()">Back to Subjects</a>
         </div>
 
+        <!-- Sidebar và cửa sổ hiển thị nội dung tài liệu -->
+        <div id="sidebar-content-wrapper" class="sidebar-content-wrapper">
+            <div class="sidebar">
+                <ul id="material-list"></ul>
+            </div>
+
+            <div class="content-window" id="content-window">
+                <h3>Material Content</h3>
+                <p>Chọn một tài liệu từ sidebar để xem nội dung.</p>
+            </div>
+        </div>
+
+        <a class="back-button" href="#" onclick="goBack()">Back to Subjects</a>
     </div>
 
-    <script>
-        let currentSubject = '';
-
-        function showMaterials(subject) {
-            currentSubject = subject;
-            document.getElementById('subject-title').textContent = currentSubject; // Update the title to the subject name
-            document.getElementById('subjects-section').style.display = 'none';
-            document.getElementById('materials-section').style.display = 'block';
-            document.getElementById('resources-list').style.display = 'block';
-        }
-
-        function showContent(contentType) {
-            const contentSection = document.getElementById('content-section');
-            contentSection.innerHTML = '<h3>' + currentSubject + ': ' + contentType + '</h3><p>This is the content for ' + contentType + '.</p>';
-            contentSection.style.display = 'block';
-            document.getElementById('resources-list').style.display = 'none';
-        }
-
-        function goBack() {
-            document.getElementById('materials-section').style.display = 'none';
-            document.getElementById('subjects-section').style.display = 'flex';
-            document.getElementById('subject-title').textContent = 'Study Materials'; // Reset title to default
-        }
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
