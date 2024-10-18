@@ -12,7 +12,6 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    position: relative;
 }
 
 h2 {
@@ -67,75 +66,41 @@ h2 {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: box-shadow 0.3s ease;
-}
-
-.subject-card:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.subject-card h3 {
-    margin: 10px 0;
 }
 
 .materials-section {
     display: none;
-    text-align: center;
-    margin-top: 20px; /* Adjust to fit design */
 }
 
 .sidebar-content-wrapper {
     display: none;
-    margin-top: 20px; /* Space between materials and sidebar */
-    display: flex; /* Display sidebar and content window side by side */
+    margin-top: 20px;
+    display: flex;
 }
 
 .sidebar {
-    width: 30%; /* Width of the sidebar */
+    width: 30%;
     border: 1px solid #ddd;
-    padding: 20px;
-    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .content-window {
-    width: 70%; /* Width of the content window */
-    padding: 20px;
+    width: 70%;
+    padding: 10px;
+    margin-left: 10px;
     border: 1px solid #ddd;
-    margin-left: 20px; /* Space between sidebar and content */
+    border-radius: 8px;
     background-color: #fff;
 }
 
-.resources-list {
-    display: inline-block; /* Make the list an inline block for centering */
-    margin: 20px 0;
-    width: 100%; /* Make the list take full width */
-}
-
-.resources-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.resources-list ul li {
-    padding: 10px;
-    background-color: #f4f4f4;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center; /* Center text inside each item */
-    border-radius: 5px; /* Rounded corners */
-}
-
-.resources-list ul li:hover {
-    background-color: #ddd; /* Change background color on hover */
-}
-
 .back-button {
-    display: inline-block; /* Make the button display inline */
-    margin-top: 20px; /* Space above the button */
+    display: block;
+    margin-top: 20px;
     background-color: #333;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
+    text-align: center;
 }
