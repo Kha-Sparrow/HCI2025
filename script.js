@@ -34,8 +34,3 @@ function showContent(material) {
     const contentWindow = document.getElementById('content-window');
     contentWindow.innerHTML = '<h3>' + materialType + ': ' + material + '</h3><p>This is the content for ' + material + '.</p>';
 }
-
-function goBack() {
-    document.getElementById('sidebar-content-wrapper').style.display = 'none';
-    document.getElementById('materials-section').style.display = 'block';
-}
