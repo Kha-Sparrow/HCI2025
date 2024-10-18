@@ -43,4 +43,5 @@ function goBack() {
     document.getElementById('materials-section').style.display = 'block';
     document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
     document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi quay lại
+    document.getElementById('subjects-section').style.display = 'block'; // Hiện lại danh sách các môn học
 }
