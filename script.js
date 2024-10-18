@@ -6,6 +6,7 @@ function showMaterials(subject) {
     document.getElementById('subject-title').textContent = currentSubject;
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('materials-section').style.display = 'block';
+    document.getElementById('back-button').style.display = 'none'; // Ẩn nút back ban đầu
 }
 
 function showMaterialType(type) {
@@ -28,9 +29,18 @@ function showMaterialType(type) {
         li.onclick = function() { showContent(material); };
         materialList.appendChild(li);
     });
+
+    document.getElementById('back-button').style.display = 'inline'; // Hiện nút back khi chọn loại tài liệu
 }
 
 function showContent(material) {
     const contentWindow = document.getElementById('content-window');
     contentWindow.innerHTML = '<h3>' + materialType + ': ' + material + '</h3><p>This is the content for ' + material + '.</p>';
+}
+
+function goBack() {
+    document.getElementById('sidebar-content-wrapper').style.display = 'none';
+    document.getElementById('materials-section').style.display = 'block';
+    document.getElementById('subject-title').textContent = 'Study Materials'; // Đặt tiêu đề lại
+    document.getElementById('back-button').style.display = 'none'; // Ẩn nút back khi quay lại
 }
