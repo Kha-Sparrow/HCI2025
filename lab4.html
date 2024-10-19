@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuleSoft 4.X Complete Guide</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assuming your CSS file is style.css -->
+</head>
+<body>
+
+    <!-- Header (Fixed Navigation Tabs) -->
+    <div class="tab">
+        <button class="active">Integration</button>
+        <button>Leave a rating</button>
+        <button>Your progress</button>
+        <button>Share</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+
+        <!-- Video Section and Information -->
+        <div class="subjects">
+            <div class="subject-card">
+                <video controls width="100%" poster="integration-thumbnail.jpg">
+                    <source src="integration-history.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p><strong>Integration:</strong> The process of making data transfer between multiple systems is known as integration.</p>
+                <p>If we don’t want to transfer the data between systems, then integration is not required.</p>
+                <p>Years ago, everyone used paper to visit and transfer data. IT has introduced web applications development, storing a lot of data in individual systems.</p>
+            </div>
+
+            <!-- Course Content Sidebar Section -->
+            <div class="subject-card">
+                <h3>Course Content</h3>
+                <ul>
+                    <li><button onclick="showSectionContent('section2')">Section 2: Integration Introduction</button></li>
+                    <li><button onclick="showSectionContent('section3')">Section 3: Mule API Development Lifecycle</button></li>
+                    <li><button onclick="showSectionContent('section4')">Section 4: Course Resources & Documents</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sidebar and Content Display -->
+        <div id="sidebar-content-wrapper" class="sidebar-content-wrapper">
+            <div class="sidebar">
+                <h3>Course Sections</h3>
+                <ul id="material-list">
+                    <li><a href="#" onclick="showSectionContent('section2')">Integration Introduction</a></li>
+                    <li><a href="#" onclick="showSectionContent('section3')">Mule API Development</a></li>
+                    <li><a href="#" onclick="showSectionContent('section4')">Course Resources</a></li>
+                </ul>
+            </div>
+            <div id="content-window" class="content-window">
+                <h3>Section Content</h3>
+                <p>Select a section to view its details here.</p>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="#" id="back-button" class="back-button" onclick="goBackToSubjects()">Back to Subjects</a>
+    </div>
+
+    <script>
+        // JavaScript functions for dynamic behavior
+        let currentSection = '';
+
+        function showSectionContent(section) {
+            currentSection = section;
+            document.getElementById('sidebar-content-wrapper').style.display = 'flex'; // Show sidebar
+
+            const contentWindow = document.getElementById('content-window');
+            contentWindow.innerHTML = '<h3>' + section + '</h3><p>This is the content for ' + section + '.</p>';
+        }
+
+        function goBackToSubjects() {
+            document.getElementById('sidebar-content-wrapper').style.display = 'none'; // Hide sidebar
+            document.getElementById('back-button').style.display = 'none'; // Hide back button when returning
+        }
+    </script>
+
+</body>
+</html>
