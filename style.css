@@ -47,6 +47,12 @@ h1, h2 {
     color: white;
 }
 
+/* Selected Lesson Styles */
+.tab .selected-lesson {
+    color: white; /* Đặt màu chữ thành trắng cho tên lesson được chọn */
+    font-weight: bold; /* Tùy chọn: in đậm tên lesson */
+}
+
 /* Lessons Grid */
 .lessons-grid {
     display: grid;
