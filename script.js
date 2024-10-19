@@ -55,6 +55,8 @@ function goBackToSubjects() {
 function selectLesson(lessonTitle) {
     // Hide lesson selection
     document.getElementById('lesson-selection').style.display = 'none';
+    // Hide menubar
+    document.querySelector('.tab').style.display = 'none'; // Hide the menubar
     // Show lesson detail
     document.getElementById('lesson-detail').style.display = 'block';
     // Set lesson title
@@ -67,6 +69,8 @@ function goBack() {
     document.getElementById('lesson-detail').style.display = 'none';
     // Show lesson selection
     document.getElementById('lesson-selection').style.display = 'block';
+    // Show menubar
+    document.querySelector('.tab').style.display = 'block'; // Show the menubar
 }
 
 // Function to navigate to the home page
