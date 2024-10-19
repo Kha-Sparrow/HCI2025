@@ -5,32 +5,59 @@ body {
     padding: 0;
 }
 
-.tab {
+/* Menubar Styles */
+.menubar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
     background-color: #333;
     color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
-.tab button, .tab span {
-    margin-right: 10px;
+.menubar button,
+.menubar span {
     background-color: transparent;
-    color: white;
     border: none;
+    color: white;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.tab button:hover {
+.menubar span {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.menubar button:hover {
     text-decoration: underline;
+}
+
+.home-button {
+    margin-right: 10px;
+}
+
+.rate-button,
+.progress-button,
+.share-button {
+    margin-right: 10px;
+}
+
+.more-options {
+    font-size: 20px;
 }
 
 /* Video Section */
 .content-wrapper {
     display: flex;
-    padding-right: 320px; /* Khoảng trống để tránh trùng với sidebar */
+    padding-right: 320px;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 70px; /* To account for the fixed menubar */
 }
 
 .video-section {
@@ -46,14 +73,14 @@ body {
 /* Sidebar Styles */
 .sidebar {
     position: fixed;
-    top: 60px; /* Để đảm bảo nó ở ngay dưới menubar */
+    top: 60px;
     right: 0;
     width: 300px;
-    height: calc(100vh - 60px); /* Chiều cao bằng chiều cao màn hình trừ menubar */
+    height: calc(100vh - 60px);
     background-color: #f9f9f9;
     padding: 15px;
-    overflow-y: auto; /* Cuộn dọc nếu nội dung dài */
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng phía trái để tạo hiệu ứng tách biệt */
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h3 {
@@ -82,71 +109,13 @@ body {
     padding-left: 20px;
 }
 
-/* Menubar dưới */
-.tab {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-}
-
-.tab button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.tab button:hover {
-    text-decoration: underline;
-}
-
-/* Course Details & Stats */
-.course-details {
-    padding: 20px;
-}
-
-.learn-grid {
-    display: flex;
-    justify-content: space-between;
-}
-
-.learn-grid div {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.learn-grid ul {
-    list-style: none;
-    padding: 0;
-}
-
-.learn-grid ul li {
-    margin-bottom: 10px;
-}
-
-/* Course Stats */
-.course-stats {
-    padding: 20px;
-    background-color: #f1f1f1;
-    display: flex;
-    justify-content: space-between;
-}
-
-.course-updates {
-    padding: 10px 20px;
-    background-color: #e9e9e9;
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .content-wrapper {
         flex-direction: column;
         padding-right: 0;
     }
-    
+
     .sidebar {
         position: relative;
         width: 100%;
