@@ -17,6 +17,7 @@
         <button class="tablinks" onclick="goToLab(3)">Lab 3</button>
         <button class="tablinks" onclick="goToLab(4)">Lab 4</button>
         <button class="tablinks" onclick="goToLab(5)">Lab 5</button>
+        <span id="selected-lesson" class="selected-lesson"></span> <!-- Thêm span cho tên bài học được chọn -->
     </div>
 
     <!-- Home Page (Lesson Selection) -->
@@ -42,8 +43,8 @@
     <div id="lesson-detail" class="container" style="display: none;">
         <!-- Menubar -->
         <div class="tab">
-            <button onclick="goBack()">Home</button>
-            <span id="lesson-title">Lesson Title</span>
+            <button onclick="goBack()">Back</button>
+            <span id="lesson-title" class="selected-lesson">Lesson Title</span> <!-- Hiển thị tên bài học -->
             <button>Leave a rating</button>
             <button>Your progress</button>
             <button>Share</button>
@@ -138,6 +139,8 @@
 
     <script>
         function selectLesson(lessonTitle) {
+            // Set selected lesson title in menubar
+            document.getElementById('selected-lesson').textContent = lessonTitle; // Cập nhật tên bài học được chọn
             // Hide lesson selection
             document.getElementById('lesson-selection').style.display = 'none';
             // Show lesson detail
@@ -147,6 +150,8 @@
         }
 
         function goBack() {
+            // Clear selected lesson title
+            document.getElementById('selected-lesson').textContent = ''; // Xóa tên bài học được chọn
             // Hide lesson detail
             document.getElementById('lesson-detail').style.display = 'none';
             // Show lesson selection
