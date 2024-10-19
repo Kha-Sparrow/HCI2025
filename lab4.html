@@ -4,105 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Lab 4 - Study Page</title>
+    <title>Lessons</title>
 </head>
 <body>
 
-    <!-- Menubar Section -->
-    <div class="menubar">
-        <button class="home-button" onclick="goHome()">Home</button>
-        <span class="lesson-title">Selected Lesson Title</span>
-        <button class="rate-button">Leave a rating</button>
-        <button class="progress-button">Your progress</button>
-        <button class="share-button">Share</button>
-        <button class="more-options">⋮</button>
-    </div>
-
-    <!-- Video and Sidebar Section -->
-    <div class="content-wrapper">
-        <!-- Video Section -->
-        <div class="video-section">
-            <video controls>
-                <source src="video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <!-- Sidebar Section -->
-        <div class="sidebar">
-            <h3>Course content</h3>
-            <ul>
-                <li>Section 1
-                    <ul>
-                        <li>Lecture 1</li>
-                        <li>Lecture 2</li>
-                    </ul>
-                </li>
-                <li>Section 2
-                    <ul>
-                        <li>Lecture 3</li>
-                        <li>Lecture 4</li>
-                    </ul>
-                </li>
-                <li>Section 3
-                    <ul>
-                        <li>Lecture 5</li>
-                        <li>Lecture 6</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Bottom Tab Menu -->
-    <div class="tab-menu">
-        <button class="tab-button active">Overview</button>
-        <button class="tab-button">Q&A</button>
-        <button class="tab-button">Notes</button>
-        <button class="tab-button">Announcements</button>
-        <button class="tab-button">Reviews</button>
-        <button class="tab-button">Learning tools</button>
-    </div>
-
-    <!-- Content Section -->
-    <div class="tab-content">
-        <div class="tab-content-item active">
-            <h3>Overview of the Course</h3>
-            <p>Upgraded with the latest MuleSoft versions and tools for hands-on learning.</p>
-        </div>
-        <!-- More content for each tab can be added here -->
-    </div>
-
-    <!-- Course Info -->
-    <div class="course-info">
-        <span>Rating: 4.6</span> |
-        <span>Students: 26,379</span> |
-        <span>Duration: 50.5 hours</span>
-    </div>
-
-    <!-- Course Update Info -->
-    <div class="course-updates">
-        <p>Last updated: November 2023</p>
-        <p>Languages: English, French, Spanish</p>
-    </div>
-
-    <!-- Learning Objectives -->
-    <div class="learning-objectives">
-        <h3>What you'll learn</h3>
-        <div class="objectives">
-            <div class="col">
-                <p>✔ Become an expert in Mule ESB, Anypoint platform, MUnit, and DevOps.</p>
-                <p>✔ Step by step coding with detailed explanation.</p>
-                <p>✔ Setup MuleSoft for your organization.</p>
+    <!-- Home Page (Lesson Selection) -->
+    <div id="lesson-selection" class="container">
+        <h1>Select a Lesson</h1>
+        <div class="lessons-grid">
+            <div class="lesson-card" onclick="selectLesson('Lesson 1: Introduction to Integration')">
+                <h2>Lesson 1: Introduction to Integration</h2>
+                <p>Learn the basics of system integration with MuleSoft.</p>
             </div>
-            <div class="col">
-                <p>✔ Develop, design, and manage projects efficiently.</p>
-                <p>✔ Learn all real-time project actions.</p>
-                <p>✔ Certification guaranteed for Mule levels.</p>
+            <div class="lesson-card" onclick="selectLesson('Lesson 2: API Development Lifecycle')">
+                <h2>Lesson 2: API Development Lifecycle</h2>
+                <p>Explore the steps to create, manage, and deploy APIs.</p>
+            </div>
+            <div class="lesson-card" onclick="selectLesson('Lesson 3: Advanced DataWeave Transformations')">
+                <h2>Lesson 3: Advanced DataWeave Transformations</h2>
+                <p>Master data transformation using MuleSoft's DataWeave language.</p>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Lesson Detail Page (Hidden by Default) -->
+    <div id="lesson-detail" class="container" style="display: none;">
+        <!-- Menubar -->
+        <div class="tab">
+            <button onclick="goBack()">Home</button>
+            <span id="lesson-title">Lesson Title</span>
+            <button>Leave a rating</button>
+            <button>Your progress</button>
+            <button>Share</button>
+            <button>⋮</button>
+        </div>
+
+        <!-- Main Content: Video and Sidebar -->
+        <div class="content-wrapper">
+            <!-- Video Section -->
+            <div class="video-section">
+                <video width="600" controls>
+                    <source src="lesson-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Sidebar: Course Content -->
+            <div class="sidebar">
+                <h3>Course content</h3>
+                <div class="course-content">
+                    <details>
+                        <summary>Section 1: Integration introduction</summary>
+                        <ul>
+                            <li><a href="#">Lecture 1</a></li>
+                            <li><a href="#">Lecture 2</a></li>
+                            <li><a href="#">Lecture 3</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Section 2: API Development</summary>
+                        <ul>
+                            <li><a href="#">Lecture 1</a></li>
+                            <li><a href="#">Lecture 2</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Section 3: DataWeave Transformations</summary>
+                        <ul>
+                            <li><a href="#">Lecture 1</a></li>
+                            <li><a href="#">Lecture 2</a></li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs for Overview, Q&A, etc. -->
+        <div class="tab">
+            <button class="active">Overview</button>
+            <button>Q&A</button>
+            <button>Notes</button>
+            <button>Announcements</button>
+            <button>Reviews</button>
+            <button>Learning tools</button>
+        </div>
+
+        <!-- Lesson Info Section -->
+        <div class="lesson-info">
+            <div class="rating">
+                <span>4.6 ★</span>
+                <span>4,705 ratings</span>
+                <span>26,379 students</span>
+                <span>50.5 hours total</span>
+            </div>
+            <div class="last-updated">
+                <span>Last updated November 2023</span>
+            </div>
+            <div class="languages">
+                <span>English, French, Spanish</span>
+            </div>
+        </div>
+
+        <!-- What you'll learn -->
+        <div class="what-you-learn">
+            <h2>What you'll learn</h2>
+            <div class="learning-outcomes">
+                <ul>
+                    <li>You will become an expert in Mule ESB.</li>
+                    <li>Step-by-step coding in detail.</li>
+                    <li>Set up MuleSoft by yourself.</li>
+                    <li>Develop, design, and manage projects.</li>
+                </ul>
+                <ul>
+                    <li>Mule 4.x in-depth course.</li>
+                    <li>Hands-on real-time projects.</li>
+                    <li>Learn actions of real-time projects.</li>
+                    <li>Gain confidence in real-time working.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectLesson(lessonTitle) {
+            // Hide lesson selection
+            document.getElementById('lesson-selection').style.display = 'none';
+            // Show lesson detail
+            document.getElementById('lesson-detail').style.display = 'block';
+            // Set lesson title
+            document.getElementById('lesson-title').textContent = lessonTitle;
+        }
+
+        function goBack() {
+            // Hide lesson detail
+            document.getElementById('lesson-detail').style.display = 'none';
+            // Show lesson selection
+            document.getElementById('lesson-selection').style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>
