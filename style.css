@@ -1,15 +1,18 @@
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Container setup */
 .container {
-    width: 100%;
-    padding: 20px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
 }
 
 /* Lesson selection styles */
@@ -40,6 +43,9 @@ body {
     color: white;
     padding: 10px;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .tab button, .tab span {
@@ -51,7 +57,7 @@ body {
     font-size: 16px;
 }
 
-.tab button:hover {
+.tab button:hover, .tab span:hover {
     background-color: #555;
 }
 
@@ -68,6 +74,9 @@ body {
 
 .video-section {
     width: 65%;
+    background-color: #e9e9e9;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .sidebar {
@@ -76,7 +85,9 @@ body {
     padding: 15px;
     border-left: 2px solid #e0e0e0;
     position: sticky;
-    top: 0;
+    top: 70px;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .sidebar h3 {
@@ -101,11 +112,50 @@ body {
     color: #007BFF;
 }
 
+/* Second Menubar for additional tabs */
+.sub-tab {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.sub-tab button {
+    background: none;
+    border: none;
+    color: #333;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sub-tab button.active {
+    border-bottom: 2px solid #007BFF;
+}
+
+.sub-tab button:hover {
+    color: #007BFF;
+}
+
+/* Section for dynamic content based on active sub-tab */
+.content-section {
+    padding: 20px;
+    background-color: #fff;
+    min-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
 /* Rating and info section */
 .lesson-info {
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
+}
+
+.rating, .last-updated, .languages {
+    display: flex;
+    flex-direction: column;
 }
 
 .rating span, .last-updated span, .languages span {
@@ -136,6 +186,18 @@ body {
     margin-bottom: 10px;
 }
 
+/* Footer section for rating, student count, hours, and update information */
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.footer-info div {
+    display: flex;
+    flex-direction: column;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .content-wrapper {
@@ -149,4 +211,33 @@ body {
     .learning-outcomes {
         flex-direction: column;
     }
+}
+
+@media (max-width: 1024px) {
+    .video-section {
+        width: 60%;
+    }
+
+    .sidebar {
+        width: 35%;
+    }
+}
+
+/* Sidebar dropdown styling */
+.course-content details summary {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.course-content details[open] summary {
+    background-color: #0056b3;
+}
+
+.course-content details ul {
+    padding-left: 20px;
 }
