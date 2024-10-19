@@ -114,3 +114,41 @@ h1, h2 {
 .rating, .last-updated, .languages {
     margin-top: 10px;
 }
+
+/* Sidebar Content Styles */
+#sidebar-content-wrapper {
+    display: none; /* Initially hidden */
+    flex-direction: column; /* Arrange items vertically */
+}
+
+/* Material Section Styles */
+#materials-section {
+    display: none; /* Initially hidden */
+    margin-top: 20px;
+}
+
+/* Back Button Styles */
+#back-button {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#back-button:hover {
+    background-color: #4cae4c;
+}
+
+/* Content Window Styles */
+#content-window {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
