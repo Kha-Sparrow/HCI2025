@@ -3,100 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 4 - Learning Page</title>
     <link rel="stylesheet" href="style.css">
+    <title>Lab 4 - Study Page</title>
 </head>
 <body>
 
-    <!-- Menubar -->
-    <div class="tab">
-        <button onclick="location.href='home.html';">< Home</button>
-        <span>MuleSoft 4.X Complete Guide For Beginners</span>
-        <button>Leave a rating</button>
-        <button>Your progress</button>
-        <button>Share</button>
-        <button>⋮</button>
+    <!-- Menubar Section -->
+    <div class="menubar">
+        <button class="home-button" onclick="goHome()">Home</button>
+        <span class="lesson-title">Selected Lesson Title</span>
+        <button class="rate-button">Leave a rating</button>
+        <button class="progress-button">Your progress</button>
+        <button class="share-button">Share</button>
+        <button class="more-options">⋮</button>
+    </div>
+
+    <!-- Video and Sidebar Section -->
+    <div class="content-wrapper">
+        <!-- Video Section -->
+        <div class="video-section">
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <h3>Course content</h3>
+            <ul>
+                <li>Section 1
+                    <ul>
+                        <li>Lecture 1</li>
+                        <li>Lecture 2</li>
+                    </ul>
+                </li>
+                <li>Section 2
+                    <ul>
+                        <li>Lecture 3</li>
+                        <li>Lecture 4</li>
+                    </ul>
+                </li>
+                <li>Section 3
+                    <ul>
+                        <li>Lecture 5</li>
+                        <li>Lecture 6</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom Tab Menu -->
+    <div class="tab-menu">
+        <button class="tab-button active">Overview</button>
+        <button class="tab-button">Q&A</button>
+        <button class="tab-button">Notes</button>
+        <button class="tab-button">Announcements</button>
+        <button class="tab-button">Reviews</button>
+        <button class="tab-button">Learning tools</button>
     </div>
 
     <!-- Content Section -->
-    <div class="container">
-
-        <!-- Video and Sidebar Section -->
-        <div class="content-wrapper">
-
-            <!-- Video Section -->
-            <div class="video-section">
-                <h2>Integration and Integration History</h2>
-                <video controls width="600">
-                    <source src="your-video-file.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <!-- Sidebar - Course Content -->
-            <div class="sidebar">
-                <h3>Course content</h3>
-                <ul>
-                    <li onclick="toggleSection(1)">Section 2: Integration Introduction</li>
-                    <ul id="section-1" style="display:none;">
-                        <li>Video: 8 minutes</li>
-                    </ul>
-                    <li onclick="toggleSection(2)">Section 3: API Development</li>
-                    <ul id="section-2" style="display:none;">
-                        <li>Video: 4 minutes</li>
-                    </ul>
-                    <li onclick="toggleSection(3)">Section 4: Resources & Documents</li>
-                    <ul id="section-3" style="display:none;">
-                        <li>Document: 1 minute</li>
-                    </ul>
-                </ul>
-            </div>
+    <div class="tab-content">
+        <div class="tab-content-item active">
+            <h3>Overview of the Course</h3>
+            <p>Upgraded with the latest MuleSoft versions and tools for hands-on learning.</p>
         </div>
+        <!-- More content for each tab can be added here -->
+    </div>
 
-        <!-- Menubar for Course Options -->
-        <div class="tab">
-            <button>Overview</button>
-            <button>Q&A</button>
-            <button>Notes</button>
-            <button>Announcements</button>
-            <button>Reviews</button>
-            <button>Learning Tools</button>
-        </div>
+    <!-- Course Info -->
+    <div class="course-info">
+        <span>Rating: 4.6</span> |
+        <span>Students: 26,379</span> |
+        <span>Duration: 50.5 hours</span>
+    </div>
 
-        <!-- Course Details -->
-        <div class="course-details">
-            <h4>What you'll learn</h4>
-            <div class="learn-grid">
-                <div>
-                    <ul>
-                        <li>Expert in Mule ESB, Anypoint Platform</li>
-                        <li>Hands-on experience after course</li>
-                        <li>Complete integration associate certification</li>
-                    </ul>
-                </div>
-                <div>
-                    <ul>
-                        <li>Learn Mule 4.x in depth</li>
-                        <li>Manage real-time projects</li>
-                        <li>Added new topics from MuleSoft</li>
-                    </ul>
-                </div>
+    <!-- Course Update Info -->
+    <div class="course-updates">
+        <p>Last updated: November 2023</p>
+        <p>Languages: English, French, Spanish</p>
+    </div>
+
+    <!-- Learning Objectives -->
+    <div class="learning-objectives">
+        <h3>What you'll learn</h3>
+        <div class="objectives">
+            <div class="col">
+                <p>✔ Become an expert in Mule ESB, Anypoint platform, MUnit, and DevOps.</p>
+                <p>✔ Step by step coding with detailed explanation.</p>
+                <p>✔ Setup MuleSoft for your organization.</p>
+            </div>
+            <div class="col">
+                <p>✔ Develop, design, and manage projects efficiently.</p>
+                <p>✔ Learn all real-time project actions.</p>
+                <p>✔ Certification guaranteed for Mule levels.</p>
             </div>
         </div>
-
-        <!-- Course Stats -->
-        <div class="course-stats">
-            <span>Rating: 4.6 ★</span> | 
-            <span>26,379 Students</span> | 
-            <span>50.5 hours total</span>
-        </div>
-
-        <!-- Last Updated & Languages -->
-        <div class="course-updates">
-            <span>Last updated: November 2023</span> | 
-            <span>Languages: English, French, more...</span>
-        </div>
-
     </div>
 
     <script src="script.js"></script>
