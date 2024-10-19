@@ -3,82 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuleSoft 4.X Complete Guide</title>
-    <link rel="stylesheet" href="style.css"> <!-- Assuming your CSS file is style.css -->
+    <title>Lab 4 - Learning Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header (Fixed Navigation Tabs) -->
+    <!-- Menubar -->
     <div class="tab">
-        <button class="active">Integration</button>
+        <button onclick="location.href='home.html';">< Home</button>
+        <span>MuleSoft 4.X Complete Guide For Beginners</span>
         <button>Leave a rating</button>
         <button>Your progress</button>
         <button>Share</button>
+        <button>⋮</button>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- Content Section -->
     <div class="container">
 
-        <!-- Video Section and Information -->
-        <div class="subjects">
-            <div class="subject-card">
-                <video controls width="100%" poster="integration-thumbnail.jpg">
-                    <source src="integration-history.mp4" type="video/mp4">
+        <!-- Video and Sidebar Section -->
+        <div class="content-wrapper">
+
+            <!-- Video Section -->
+            <div class="video-section">
+                <h2>Integration and Integration History</h2>
+                <video controls width="600">
+                    <source src="your-video-file.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <p><strong>Integration:</strong> The process of making data transfer between multiple systems is known as integration.</p>
-                <p>If we don’t want to transfer the data between systems, then integration is not required.</p>
-                <p>Years ago, everyone used paper to visit and transfer data. IT has introduced web applications development, storing a lot of data in individual systems.</p>
             </div>
 
-            <!-- Course Content Sidebar Section -->
-            <div class="subject-card">
-                <h3>Course Content</h3>
-                <ul>
-                    <li><button onclick="showSectionContent('section2')">Section 2: Integration Introduction</button></li>
-                    <li><button onclick="showSectionContent('section3')">Section 3: Mule API Development Lifecycle</button></li>
-                    <li><button onclick="showSectionContent('section4')">Section 4: Course Resources & Documents</button></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Sidebar and Content Display -->
-        <div id="sidebar-content-wrapper" class="sidebar-content-wrapper">
+            <!-- Sidebar - Course Content -->
             <div class="sidebar">
-                <h3>Course Sections</h3>
-                <ul id="material-list">
-                    <li><a href="#" onclick="showSectionContent('section2')">Integration Introduction</a></li>
-                    <li><a href="#" onclick="showSectionContent('section3')">Mule API Development</a></li>
-                    <li><a href="#" onclick="showSectionContent('section4')">Course Resources</a></li>
+                <h3>Course content</h3>
+                <ul>
+                    <li onclick="toggleSection(1)">Section 2: Integration Introduction</li>
+                    <ul id="section-1" style="display:none;">
+                        <li>Video: 8 minutes</li>
+                    </ul>
+                    <li onclick="toggleSection(2)">Section 3: API Development</li>
+                    <ul id="section-2" style="display:none;">
+                        <li>Video: 4 minutes</li>
+                    </ul>
+                    <li onclick="toggleSection(3)">Section 4: Resources & Documents</li>
+                    <ul id="section-3" style="display:none;">
+                        <li>Document: 1 minute</li>
+                    </ul>
                 </ul>
-            </div>
-            <div id="content-window" class="content-window">
-                <h3>Section Content</h3>
-                <p>Select a section to view its details here.</p>
             </div>
         </div>
 
-        <!-- Back Button -->
-        <a href="#" id="back-button" class="back-button" onclick="goBackToSubjects()">Back to Subjects</a>
+        <!-- Menubar for Course Options -->
+        <div class="tab">
+            <button>Overview</button>
+            <button>Q&A</button>
+            <button>Notes</button>
+            <button>Announcements</button>
+            <button>Reviews</button>
+            <button>Learning Tools</button>
+        </div>
+
+        <!-- Course Details -->
+        <div class="course-details">
+            <h4>What you'll learn</h4>
+            <div class="learn-grid">
+                <div>
+                    <ul>
+                        <li>Expert in Mule ESB, Anypoint Platform</li>
+                        <li>Hands-on experience after course</li>
+                        <li>Complete integration associate certification</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Learn Mule 4.x in depth</li>
+                        <li>Manage real-time projects</li>
+                        <li>Added new topics from MuleSoft</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Stats -->
+        <div class="course-stats">
+            <span>Rating: 4.6 ★</span> | 
+            <span>26,379 Students</span> | 
+            <span>50.5 hours total</span>
+        </div>
+
+        <!-- Last Updated & Languages -->
+        <div class="course-updates">
+            <span>Last updated: November 2023</span> | 
+            <span>Languages: English, French, more...</span>
+        </div>
+
     </div>
 
-    <script>
-        // JavaScript functions for dynamic behavior
-        let currentSection = '';
-
-        function showSectionContent(section) {
-            currentSection = section;
-            document.getElementById('sidebar-content-wrapper').style.display = 'flex'; // Show sidebar
-
-            const contentWindow = document.getElementById('content-window');
-            contentWindow.innerHTML = '<h3>' + section + '</h3><p>This is the content for ' + section + '.</p>';
-        }
-
-        function goBackToSubjects() {
-            document.getElementById('sidebar-content-wrapper').style.display = 'none'; // Hide sidebar
-            document.getElementById('back-button').style.display = 'none'; // Hide back button when returning
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
