@@ -1,4 +1,4 @@
-let currentSubject = '';
+let currentSubject = ''; 
 let materialType = '';
 
 // Function to show materials for the selected subject
@@ -56,7 +56,7 @@ function selectLesson(lessonTitle) {
     // Hide lesson selection
     document.getElementById('lesson-selection').style.display = 'none';
     // Hide menubar
-    document.querySelector('.tab').style.display = 'none'; // Hide the menubar
+    document.getElementById('main-menubar').style.display = 'none'; // Hide the main menubar
     // Show lesson detail
     document.getElementById('lesson-detail').style.display = 'block';
     // Set lesson title
@@ -70,7 +70,7 @@ function goBack() {
     // Show lesson selection
     document.getElementById('lesson-selection').style.display = 'block';
     // Show menubar
-    document.querySelector('.tab').style.display = 'block'; // Show the menubar
+    document.getElementById('main-menubar').style.display = 'block'; // Show the main menubar
 }
 
 // Function to navigate to the home page
