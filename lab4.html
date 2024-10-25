@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Lessons</title>
+    <style>
+        /* Thêm CSS cho bố cục */
+        .content-wrapper {
+            display: flex; /* Sử dụng Flexbox để bố trí hai phần video và sidebar */
+            justify-content: space-between; /* Đảm bảo hai phần nằm cạnh nhau */
+            align-items: flex-start; /* Đảm bảo hai phần bắt đầu ở trên cùng */
+            margin-top: 20px; /* Thêm một chút khoảng cách ở trên */
+        }
+        .video-section {
+            flex: 2; /* Video chiếm 2 phần */
+            margin-right: 20px; /* Khoảng cách giữa video và sidebar */
+        }
+        .sidebar {
+            flex: 1; /* Sidebar chiếm 1 phần */
+        }
+    </style>
 </head>
 <body>
 
