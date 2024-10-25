@@ -9,7 +9,7 @@
 <body>
 
     <!-- Menubar -->
-    <div class="tab">
+    <div class="tab" id="main-menubar">
         <button class="tablinks" onclick="goToHome()">Home</button>
         <button class="tablinks" onclick="goToAbout()">About</button>
         <button class="tablinks" onclick="goToLab(1)">Lab 1</button>
@@ -139,6 +139,8 @@
 
     <script>
         function selectLesson(lessonTitle) {
+            // Ẩn menubar chính
+            document.getElementById('main-menubar').style.display = 'none';
             // Set selected lesson title in menubar
             document.getElementById('selected-lesson').textContent = lessonTitle; // Cập nhật tên bài học được chọn
             // Hide lesson selection
@@ -150,6 +152,8 @@
         }
 
         function goBack() {
+            // Show menubar chính
+            document.getElementById('main-menubar').style.display = 'block';
             // Clear selected lesson title
             document.getElementById('selected-lesson').textContent = ''; // Xóa tên bài học được chọn
             // Hide lesson detail
