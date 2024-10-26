@@ -1,4 +1,3 @@
-
 let currentSubject = ''; 
 let materialType = '';
 
@@ -103,13 +102,24 @@ function trackProgress() {
 function shareLesson() {
     alert('Sharing this lesson...'); // Placeholder for sharing functionality
 }
-function activateTab(tabElement) {
-    // Xóa lớp 'active' khỏi tất cả các tab
-    var tabs = document.getElementsByClassName("tablinks");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-    }
-    // Thêm lớp 'active' vào tab được chọn
-    tabElement.classList.add("active");
-}
 
+// Function to activate a tab
+function activateTab(tabId) {
+    // Hide all tab contents
+    var tabContents = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].style.display = "none";
+    }
+
+    // Show the selected tab content
+    document.getElementById(tabId).style.display = "block";
+
+    // Set all tabs to inactive
+    var tablinks = document.getElementsByClassName("tablinks");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Set the clicked tab to active
+    event.currentTarget.classList.add("active");
+}
