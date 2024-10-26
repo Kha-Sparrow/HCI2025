@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Line 1: Menubar -->
-    <div class="tab">
+    <div class="tab" id="main-menubar">
         <button class="tablinks" onclick="window.location.href='home.html'">Home</button>
         <a href="about.html"><button class="tablinks">About</button></a>
         <button class="tablinks" onclick="window.location.href='lab1.html'">Lab 1</button>
@@ -23,9 +23,11 @@
     <div class="container">
         <h1>My Learning</h1>
 
-        <!-- Line 3: Total study time -->
-        <p>Total hours studied: <span id="total-time">10 hours, 45 minutes</span></p>
-        <a href="#" onclick="alert('Viewing all activity...')">View all activity</a>
+        <!-- Line 3: Total study time and View all activity link -->
+        <div class="study-time">
+            <span>Total hours studied: <span id="total-time">10 hours, 45 minutes</span></span>
+            <a href="#" onclick="alert('Viewing all activity...')" class="view-activity">View all activity</a>
+        </div>
 
         <!-- Line 4: Tabbed Menu Bar -->
         <div class="tab">
