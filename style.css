@@ -15,7 +15,8 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+/* Centered Titles (Use specific classes if needed for individual alignment) */
+.center-title {
     text-align: center;
 }
 
