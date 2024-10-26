@@ -47,10 +47,9 @@ h1, h2 {
     color: white;
 }
 
-/* Selected Lesson Styles */
 .tab .selected-lesson {
-    color: white; /* Đặt màu chữ thành trắng cho tên lesson được chọn */
-    font-weight: bold; /* Tùy chọn: in đậm tên lesson */
+    color: white;
+    font-weight: bold;
 }
 
 /* Lessons Grid */
@@ -82,13 +81,13 @@ h1, h2 {
 
 /* Video Section Styles */
 .video-section {
-    flex: 70%; /* Adjust this value for video width */
-    padding-right: 20px; /* Space between video and sidebar */
+    flex: 70%;
+    padding-right: 20px;
 }
 
 /* Sidebar Styles */
 .sidebar {
-    flex: 30%; /* Adjust this value for sidebar width */
+    flex: 30%;
 }
 
 /* Course Content Styles */
@@ -123,19 +122,19 @@ h1, h2 {
 
 /* Sidebar Content Styles */
 #sidebar-content-wrapper {
-    display: none; /* Initially hidden */
-    flex-direction: column; /* Arrange items vertically */
+    display: none;
+    flex-direction: column;
 }
 
 /* Material Section Styles */
 #materials-section {
-    display: none; /* Initially hidden */
+    display: none;
     margin-top: 20px;
 }
 
 /* Back Button Styles */
 #back-button {
-    display: none; /* Initially hidden */
+    display: none;
     margin-top: 10px;
     padding: 10px 15px;
     background-color: #5cb85c;
@@ -157,4 +156,24 @@ h1, h2 {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
+}
+
+/* Study Time and Activity Link Styling */
+.study-time {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.view-activity {
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.view-activity:hover {
+    text-decoration: underline;
 }
