@@ -88,6 +88,20 @@ function goToLab(labNumber) {
     window.location.href = `lab${labNumber}.html`; // Navigate to the corresponding lab page
 }
 
+// Function to activate selected tab on lab5.html
+function activateTab(tabId) {
+    // Hide all tab contents and remove active class from tabs
+    const tabs = document.getElementsByClassName('tab-content');
+    const tabButtons = document.getElementsByClassName('tab');
+    
+    Array.from(tabs).forEach(tab => tab.classList.remove('active'));
+    Array.from(tabButtons).forEach(button => button.classList.remove('active'));
+
+    // Show the selected tab content and set active class
+    document.getElementById(tabId).classList.add('active');
+    document.getElementById(tabId + '-button').classList.add('active');
+}
+
 // Example: Function to handle ratings (if needed in the future)
 function leaveRating() {
     alert('Thank you for your rating!'); // Placeholder for rating functionality
