@@ -103,3 +103,13 @@ function trackProgress() {
 function shareLesson() {
     alert('Sharing this lesson...'); // Placeholder for sharing functionality
 }
+function activateTab(tabElement) {
+    // Xóa lớp 'active' khỏi tất cả các tab
+    var tabs = document.getElementsByClassName("tablinks");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    // Thêm lớp 'active' vào tab được chọn
+    tabElement.classList.add("active");
+}
+
