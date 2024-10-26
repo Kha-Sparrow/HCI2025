@@ -19,54 +19,55 @@
         <button class="tablinks active" onclick="window.location.href='lab5.html'">Lab 5</button>
     </div>
 
-   <!-- Line 2 and Line 3: Page Title and Study Time -->
-<div class="container">
-    <h1 class="page-title">My Learning</h1>
-    <div class="study-time">
-        <span>Total hours studied: <span id="total-time">10 hours, 45 minutes</span></span>
-        <a href="#" onclick="alert('Viewing all activity...')" class="view-activity">View all activity</a>
+    <!-- Line 2 and Line 3: Page Title and Study Time -->
+    <div class="container">
+        <h1 class="page-title">My Learning</h1>
+        <div class="study-time">
+            <span>Total hours studied: <span id="total-time">10 hours, 45 minutes</span></span>
+            <a href="#" onclick="alert('Viewing all activity...')" class="view-activity">View all activity</a>
+        </div>
     </div>
-</div>
 
-        <!-- Line 4: Tabbed Menu Bar -->
-        <div class="tab">
-            <button class="tablinks" id="all-courses-button" onclick="activateTab('all-courses')">All courses</button>
-            <button class="tablinks" id="learning-paths-button" onclick="activateTab('learning-paths')">Learning paths</button>
-            <button class="tablinks" id="certifications-button" onclick="activateTab('certifications')">Certifications</button>
-            <button class="tablinks" id="archived-button" onclick="activateTab('archived')">Archived</button>
-            <button class="tablinks" id="learning-tools-button" onclick="activateTab('learning-tools')">Learning tools</button>
-        </div>
+    <!-- Line 4: Tabbed Menu Bar -->
+    <div class="tab">
+        <button class="tablinks" onclick="activateTab('all-courses')">All courses</button>
+        <button class="tablinks" onclick="activateTab('learning-paths')">Learning paths</button>
+        <button class="tablinks" onclick="activateTab('certifications')">Certifications</button>
+        <button class="tablinks" onclick="activateTab('archived')">Archived</button>
+        <button class="tablinks" onclick="activateTab('learning-tools')">Learning tools</button>
+    </div>
 
-        <!-- Tab Contents -->
-        <div id="all-courses" class="tab-content">
-            <h2>All Courses</h2>
-            <p>List of all enrolled courses.</p>
-        </div>
+    <!-- Tab Contents -->
+    <div id="all-courses" class="tab-content">
+        <h2>All Courses</h2>
+        <p>List of all enrolled courses.</p>
+    </div>
 
-        <div id="learning-paths" class="tab-content" style="display: none;">
-            <h2>Learning Paths</h2>
-            <p>Overview of learning paths you are following.</p>
-        </div>
+    <div id="learning-paths" class="tab-content" style="display: none;">
+        <h2>Learning Paths</h2>
+        <p>Overview of learning paths you are following.</p>
+    </div>
 
-        <div id="certifications" class="tab-content" style="display: none;">
-            <h2>Certifications</h2>
-            <p>Your certifications will be displayed here.</p>
-        </div>
+    <div id="certifications" class="tab-content" style="display: none;">
+        <h2>Certifications</h2>
+        <p>Your certifications will be displayed here.</p>
+    </div>
 
-        <div id="archived" class="tab-content" style="display: none;">
-            <h2>Archived</h2>
-            <p>Archived courses and learning materials.</p>
-        </div>
+    <div id="archived" class="tab-content" style="display: none;">
+        <h2>Archived</h2>
+        <p>Archived courses and learning materials.</p>
+    </div>
 
-        <div id="learning-tools" class="tab-content" style="display: none;">
-            <h2>Learning Tools</h2>
-            <p>Explore learning tools available to you.</p>
-        </div>
+    <div id="learning-tools" class="tab-content" style="display: none;">
+        <h2>Learning Tools</h2>
+        <p>Explore learning tools available to you.</p>
     </div>
 
     <script>
         // Activate the first tab by default
-        activateTab('all-courses');
+        document.addEventListener("DOMContentLoaded", function() {
+            activateTab('all-courses');
+        });
     </script>
 </body>
 </html>
