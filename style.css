@@ -19,9 +19,7 @@ body {
 .center-title {
     text-align: center;
 }
-.page-title {
-    text-align: left;
-}
+
 /* Menubar Styles */
 .tab {
     overflow: hidden;
