@@ -13,7 +13,7 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-     margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Centered Titles (Use specific classes if needed for individual alignment) */
@@ -179,4 +179,19 @@ body {
 
 .view-activity:hover {
     text-decoration: underline;
+}
+
+/* Tab Content Display Styles */
+.tab-content {
+    display: none; /* Ẩn tất cả các tab nội dung theo mặc định */
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Hiển thị nội dung cho tab đang được kích hoạt */
+.tab-content.active {
+    display: block;
 }
