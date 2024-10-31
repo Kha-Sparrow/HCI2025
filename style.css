@@ -267,9 +267,9 @@ body {
 }
 /* Container for Page Title and Study Time */
 .container.no-border {
-    width: 100%; /* Chiều dài bằng chiều dài trang */
-    margin: 10px; /* Không có lề */
-    padding: 0; /* Không có padding */
+    
+    margin: 0; /* Không có lề */
+    padding: 20px 10px; /* Không có padding */
     background-color: transparent; /* Không có nền */
     height: 25%;
 }
