@@ -273,3 +273,47 @@ body {
     background-color: transparent; /* Không có nền */
     height: 25%;
 }
+/* Kiểu dáng cho thẻ khóa học trong phần Archived */
+.course-card {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.course-image {
+    width: 100px;
+    height: auto;
+    margin-right: 16px;
+    border-radius: 8px;
+}
+
+.course-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.course-info h3 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.course-info p {
+    margin: 4px 0;
+}
+
+.course-rating {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.course-rating span:first-child {
+    color: #FFD700; /* Màu vàng cho ngôi sao */
+    margin-right: 8px;
+}
