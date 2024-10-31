@@ -184,7 +184,7 @@ body {
 /* Tab Content Display Styles */
 .tab-content {
     display: none; /* Ẩn tất cả các tab nội dung theo mặc định */
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -269,7 +269,7 @@ body {
 .container.no-border {
     
     margin: 0; /* Không có lề */
-    padding: 20px 10px; /* Không có padding */
+    padding: 20px 0px 20px 10px;
     background-color: transparent; /* Không có nền */
     height: 25%;
 }
