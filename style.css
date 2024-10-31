@@ -236,7 +236,8 @@ body {
     border-radius: 8px;
     padding: 15px;
     text-align: center;
-    width: 200px;
+    width: calc(50% - 10px); /* Cập nhật chiều rộng thẻ thành 50% của không gian cha */
+    box-sizing: border-box; /* Đảm bảo padding và border không làm thay đổi chiều rộng */
 }
 
 .cert-card img {
