@@ -271,6 +271,6 @@ body {
     margin: 0; /* Không có lề */
     padding: 0; /* Không có padding */
     background-color: transparent; /* Không có nền */
-    height: 56px; /* Chiều cao của dòng 1 và dòng 4 là 56px */
+    height: 36px;
 }
 
