@@ -249,8 +249,19 @@ body {
 }
 /* Đưa nút về cùng dòng và canh phải */
 .badge-row, .cert-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    display: flex; /* Sử dụng flexbox để sắp xếp các phần tử trong hàng */
+    justify-content: space-between; /* Phân bố không gian giữa văn bản và nút */
+    align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+    margin-bottom: 10px; /* Khoảng cách phía dưới cho mỗi hàng */
 }
+
+.badge-row p, .cert-row p {
+    margin: 0; /* Xóa khoảng cách mặc định của đoạn văn bản */
+    flex: 1; /* Chiếm toàn bộ không gian còn lại */
+    text-align: left; /* Canh trái cho văn bản */
+}
+
+.import-badge-button, .explore-cert-button {
+    margin-left: auto; /* Đẩy nút về phía bên phải */
+}
+
