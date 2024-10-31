@@ -265,4 +265,12 @@ body {
 .import-badge-button, .explore-cert-button {
     margin-left: auto; /* Đẩy nút về phía bên phải */
 }
+/* Container for Page Title and Study Time */
+.container.no-border {
+    max-width: 100%; /* Chiều dài bằng chiều dài trang */
+    margin: 0; /* Không có lề */
+    padding: 0; /* Không có padding */
+    background-color: transparent; /* Không có nền */
+    height: calc(100vh - 56px); /* Chiều cao của dòng 1 và dòng 4 là 56px */
+}
 
