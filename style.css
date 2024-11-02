@@ -317,3 +317,124 @@ body {
     color: #FFD700; /* Màu vàng cho ngôi sao */
     margin-right: 8px;
 }
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Menubar Styles */
+.menubar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.menubar a, .menubar button {
+    text-decoration: none;
+    padding: 8px 12px;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.menubar a:hover, .menubar button:hover {
+    color: #0073e6;
+}
+
+/* Icon styling */
+.icon {
+    width: 24px;
+    vertical-align: middle;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-link {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dashboard-button {
+    padding: 8px 16px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dashboard-button:hover {
+    background-color: #444;
+}
+
+/* Content Text Styles */
+.line2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.line3, .line4 {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Input and Button Section */
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.email-input {
+    padding: 8px;
+    font-size: 16px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.start-trial-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.start-trial-button:hover {
+    background-color: #005bb5;
+}
