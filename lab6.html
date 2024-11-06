@@ -221,6 +221,54 @@
       cursor: pointer;
       color: #333;
     }
+
+    /* Learning Goals Section */
+    .learning-goals {
+      display: none;
+      text-align: left;
+      padding: 40px;
+    }
+
+    .learning-goals h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .goal-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .goal-box {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .goal-box h3 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .goal-box p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #d1eaff;
+      color: #0073e6;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 5px;
+    }
   </style>
 </head>
 <body>
@@ -263,36 +311,58 @@
           <h3>The Complete 2024 Web Development Bootcamp</h3>
           <p>4.7 ★ (409,451) - 1,699,000₫</p>
         </div>
-       <div class="course-card">
+        <div class="course-card" onclick="showModal('The Web Developer Bootcamp 2024')">
           <img src="course-image2.jpg" alt="Course 2">
           <h3>The Web Developer Bootcamp 2024</h3>
           <p>4.7 ★ (276,674) - 2,399,000₫</p>
         </div>
-        <div class="course-card">
+        <div class="course-card" onclick="showModal('Web Development Masterclass')">
           <img src="course-image3.jpg" alt="Course 3">
           <h3>Web Development Masterclass</h3>
-          <p>4.3 ★ (10,000) - 1,499,000₫</p>
+          <p>4.5 ★ (109,674) - 2,199,000₫</p>
         </div>
       </div>
-      <button>Show all Web Development courses</button>
+    </div>
+
+    <!-- Learning Goals Section -->
+    <div class="learning-goals" id="learning-goals">
+      <h2>Learning focused on your goals</h2>
+      <div class="goal-boxes">
+        <div class="goal-box">
+          <h3>Hands-on training</h3>
+          <p>Upskill effectively with AI-powered coding exercises, practice tests, and quizzes.</p>
+        </div>
+        <div class="goal-box">
+          <h3>Certification prep</h3>
+          <p>Prep for industry-recognized certifications by solving real-world challenges and earn badges along the way.</p>
+        </div>
+        <div class="goal-box">
+          <h3>Insights and analytics <span class="tag">Enterprise Plan</span></h3>
+          <p>Fast-track goals with advanced insights plus a dedicated customer success team to help drive effective learning.</p>
+          <a href="#">Find out more →</a>
+        </div>
+        <div class="goal-box">
+          <h3>Customizable content <span class="tag">Enterprise Plan</span></h3>
+          <p>Create tailored learning paths for team and organization goals and even host your own content and resources.</p>
+          <a href="#">Find out more →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h4 id="modal-title"></h4>
+        <ul>
+          <li>24 hours on-demand video</li>
+          <li>22 coding exercises</li>
+          <li>Access on mobile and TV</li>
+        </ul>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
     </div>
   </main>
-
-  <!-- Modal for course details -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h4 id="course-title">Course Title</h4>
-      <p>Updated October 2024</p>
-      <ul>
-        <li>74 total hours · All Levels · Subtitles</li>
-        <li>10 Hours of React just added</li>
-        <li>Make REAL web applications using cutting-edge technologies</li>
-        <li>Create responsive, accessible, and beautiful layouts</li>
-      </ul>
-      <button>Add to cart</button>
-    </div>
-  </div>
 
   <script>
     function showCourses(event) {
@@ -302,12 +372,18 @@
     }
 
     function showModal(courseTitle) {
-      document.getElementById('course-title').textContent = courseTitle;
+      document.getElementById('modal-title').innerText = courseTitle;
       document.getElementById('modal').style.display = 'flex';
     }
 
     function closeModal() {
       document.getElementById('modal').style.display = 'none';
+    }
+
+    function addToCart() {
+      closeModal();
+      document.getElementById('courses').style.display = 'none';
+      document.getElementById('learning-goals').style.display = 'block';
     }
   </script>
 </body>
