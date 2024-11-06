@@ -29,6 +29,8 @@ header {
     padding: 20px 40px;
     background-color: #0e1a2b;
     color: #fff;
+    position: fixed; /* Thêm thuộc tính này */
+    top: 0;
 }
 
 header .logo {
@@ -47,13 +49,12 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 40px;
+    padding: 100px 40px; /* Điều chỉnh để tránh bị che bởi header */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     max-width: 600px;
 }
-
 .content h2 {
     font-size: 28px;
     color: #36b37e;
