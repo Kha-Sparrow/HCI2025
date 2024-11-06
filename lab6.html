@@ -58,54 +58,7 @@
       flex: 1;
     }
 
-    .content h2 {
-      font-size: 24px;
-      color: #36b37e;
-      margin: 5px 0;
-    }
-
-    .content p {
-      color: #333;
-      font-size: 14px;
-      margin: 5px 0;
-    }
-
-    form {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 5px 0;
-    }
-
-    form input {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: 250px;
-    }
-
-    form button {
-      padding: 8px 15px;
-      background-color: #36b37e;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background-color: #2d9963;
-    }
-
-    .learn-more {
-      text-decoration: none;
-      color: #36b37e;
-      font-size: 14px;
-    }
-
-    /* New section styles */
     .courses {
-      display: none;
       margin-top: 20px;
       width: 100%;
       text-align: center;
@@ -234,19 +187,8 @@
   </header>
 
   <main>
-    <!-- Initial content section -->
-    <div class="content" id="initial-content">
-      <h2>Evaluate Candidates Quickly, Affordably, and Accurately</h2>
-      <p>The #1 platform for technical assessments, interviews, and projects.<br>Get unlimited candidates and admins on every plan.</p>
-      <form onsubmit="showCourses(event)">
-        <input type="email" placeholder="Work email address" required>
-        <button type="submit">Start Trial</button>
-      </form>
-      <a href="#" class="learn-more">Learn more</a>
-    </div>
-
-    <!-- Hidden course section -->
-    <div class="courses" id="courses">
+    <!-- Course section -->
+    <div class="courses">
       <div class="course-category">
         <span class="active">Web Development</span>
         <span>JavaScript</span>
@@ -258,12 +200,17 @@
         <span>CSS</span>
       </div>
       <div class="course-list">
-        <div class="course-card" onclick="showModal('The Complete 2024 Web Development Bootcamp')">
+        <div class="course-card" onclick="showModal('The Complete 2024 Web Development Bootcamp', 'Dr. Angela Yu, Developer and Lead Educator', '4.7 ★ (409,451)', '1,699,000₫')">
           <img src="course-image1.jpg" alt="Course 1">
           <h3>The Complete 2024 Web Development Bootcamp</h3>
           <p>4.7 ★ (409,451) - 1,699,000₫</p>
         </div>
-        <!-- Add more course cards here with onclick events -->
+        <div class="course-card" onclick="showModal('The Web Developer Bootcamp 2024', 'Colt Steele', '4.7 ★ (276,674)', '2,399,000₫')">
+          <img src="course-image2.jpg" alt="Course 2">
+          <h3>The Web Developer Bootcamp 2024</h3>
+          <p>4.7 ★ (276,674) - 2,399,000₫</p>
+        </div>
+        <!-- Add more course cards as needed -->
       </div>
       <button>Show all Web Development courses</button>
     </div>
@@ -274,6 +221,9 @@
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <h4 id="course-title">Course Title</h4>
+      <p id="course-author">Instructor: Name</p>
+      <p id="course-rating">Rating: Rating</p>
+      <p id="course-price">Price: Price</p>
       <p>Updated October 2024</p>
       <ul>
         <li>74 total hours · All Levels · Subtitles</li>
@@ -286,14 +236,11 @@
   </div>
 
   <script>
-    function showCourses(event) {
-      event.preventDefault();
-      document.getElementById('initial-content').style.display = 'none';
-      document.getElementById('courses').style.display = 'block';
-    }
-
-    function showModal(courseTitle) {
-      document.getElementById('course-title').textContent = courseTitle;
+    function showModal(title, author, rating, price) {
+      document.getElementById('course-title').textContent = title;
+      document.getElementById('course-author').textContent = `Instructor: ${author}`;
+      document.getElementById('course-rating').textContent = `Rating: ${rating}`;
+      document.getElementById('course-price').textContent = `Price: ${price}`;
       document.getElementById('modal').style.display = 'flex';
     }
 
