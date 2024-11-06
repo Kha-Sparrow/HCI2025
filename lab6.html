@@ -26,10 +26,10 @@ header {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 20px 40px;
+    padding: 10px 20px; /* Giảm padding để giảm khoảng cách trong header */
     background-color: #0e1a2b;
     color: #fff;
-    position: fixed; /* Thêm thuộc tính này */
+    position: fixed;
     top: 0;
 }
 
@@ -49,39 +49,39 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 100px 40px; /* Điều chỉnh để tránh bị che bởi header */
+    padding: 80px 20px; /* Điều chỉnh padding-top để tránh bị che và giảm khoảng cách */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     max-width: 600px;
 }
 .content h2 {
-    font-size: 28px;
+    font-size: 24px; /* Giảm font-size để dòng tiêu đề nhỏ gọn hơn */
     color: #36b37e;
-    margin-bottom: 10px;
+    margin: 5px 0; /* Giảm khoảng cách giữa các phần tử trong content */
 }
 
 .content p {
     color: #333;
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 14px; /* Giảm font-size để nội dung gọn hơn */
+    margin: 5px 0;
 }
 
 form {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 5px; /* Giảm khoảng cách giữa input và button */
+    margin: 5px 0;
 }
 
 form input {
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 250px;
 }
 
 form button {
-    padding: 10px 20px;
+    padding: 8px 15px;
     background-color: #36b37e;
     color: #fff;
     border: none;
@@ -102,8 +102,8 @@ form button:hover {
 .tech-icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 5px; /* Giảm khoảng cách giữa các icon */
+    margin-top: 10px;
 }
 
 .icon {
