@@ -174,7 +174,8 @@
   </header>
 
   <main>
-    <div class="content">
+    <!-- Initial content section -->
+    <div class="content" id="initial-content">
       <h2>Evaluate Candidates Quickly, Affordably, and Accurately</h2>
       <p>The #1 platform for technical assessments, interviews, and projects.<br>Get unlimited candidates and admins on every plan.</p>
       <form onsubmit="showCourses(event)">
@@ -220,6 +221,8 @@
   <script>
     function showCourses(event) {
       event.preventDefault();
+      // Hide the initial content and show the course section
+      document.getElementById('initial-content').style.display = 'none';
       document.getElementById('courses').style.display = 'block';
     }
   </script>
