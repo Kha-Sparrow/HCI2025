@@ -4,151 +4,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 6</title>
- <style>
+  <style>
     /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-body {
-    background-color: #f4f8fc;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+    body {
+      background-color: #f4f8fc;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px 40px;
-    background-color: #0e1a2b;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    margin: 0;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 20px 40px;
+      background-color: #0e1a2b;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Đảm bảo header luôn nằm trên cùng */
+    }
 
-header .logo {
-    font-size: 24px;
-    font-weight: bold;
-}
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-header nav a {
-    color: #fff;
-    margin-left: 20px;
-    text-decoration: none;
-}
+    header nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+    }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 80px; /* Đặt padding-top bằng chiều cao của header */
-    padding: 0 40px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-}
-.content h2 {
-    font-size: 24px; /* Giảm font-size để dòng tiêu đề nhỏ gọn hơn */
-    color: #36b37e;
-    margin: 5px 0; /* Giảm khoảng cách giữa các phần tử trong content */
-}
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      margin-top: 80px; /* Tạo khoảng trống bằng chiều cao của header */
+      background-color: #fff;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      flex: 1; /* Để main chiếm toàn bộ chiều cao còn lại của trang */
+    }
 
-.content p {
-    color: #333;
-    font-size: 14px; /* Giảm font-size để nội dung gọn hơn */
-    margin: 5px 0;
-}
+    .content h2 {
+      font-size: 24px;
+      color: #36b37e;
+      margin: 5px 0;
+    }
 
-form {
-    display: flex;
-    gap: 5px; /* Giảm khoảng cách giữa input và button */
-    margin: 5px 0;
-}
+    .content p {
+      color: #333;
+      font-size: 14px;
+      margin: 5px 0;
+    }
 
-form input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 250px;
-}
+    form {
+      display: flex;
+      gap: 5px;
+      margin: 5px 0;
+    }
 
-form button {
-    padding: 8px 15px;
-    background-color: #36b37e;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    form input {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 250px;
+    }
 
-form button:hover {
-    background-color: #2d9963;
-}
+    form button {
+      padding: 8px 15px;
+      background-color: #36b37e;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-.learn-more {
-    text-decoration: none;
-    color: #36b37e;
-    font-size: 14px;
-}
+    form button:hover {
+      background-color: #2d9963;
+    }
 
-.tech-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px; /* Giảm khoảng cách giữa các icon */
-    margin-top: 10px;
-}
+    .learn-more {
+      text-decoration: none;
+      color: #36b37e;
+      font-size: 14px;
+    }
 
-.icon {
-    padding: 8px 12px;
-    background-color: #f4f4f4;
-    border-radius: 4px;
-    color: #333;
-    font-size: 14px;
-    display: inline-block;
-}
-  </style> 
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .icon {
+      padding: 8px 12px;
+      background-color: #f4f4f4;
+      border-radius: 4px;
+      color: #333;
+      font-size: 14px;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
   <header>
-        <div class="logo">Coderbyte</div>
-        <nav>
-            <a href="#">Developers</a>
-            <a href="#">Organizations</a>
-            <a href="#">Dashboard</a>
-        </nav>
-    </header>
+    <div class="logo">Coderbyte</div>
+    <nav>
+      <a href="#">Developers</a>
+      <a href="#">Organizations</a>
+      <a href="#">Dashboard</a>
+    </nav>
+  </header>
 
-    <main>
-        <div class="content">
-            <h2>Evaluate Candidates Quickly, Affordably, and Accurately</h2>
-            <p>The #1 platform for technical assessments, interviews, and projects.<br>Get unlimited candidates and admins on every plan.</p>
-            <form>
-                <input type="email" placeholder="Work email address">
-                <button type="submit">Start Trial</button>
-            </form>
-            <a href="#" class="learn-more">Learn more</a>
-        </div>
+  <main>
+    <div class="content">
+      <h2>Evaluate Candidates Quickly, Affordably, and Accurately</h2>
+      <p>The #1 platform for technical assessments, interviews, and projects.<br>Get unlimited candidates and admins on every plan.</p>
+      <form>
+        <input type="email" placeholder="Work email address">
+        <button type="submit">Start Trial</button>
+      </form>
+      <a href="#" class="learn-more">Learn more</a>
+    </div>
 
-        <div class="tech-icons">
-            <!-- Add as many icons as necessary. Each one can be represented with a placeholder like this: -->
-            <span class="icon">AWS</span>
-            <span class="icon">Node JS</span>
-            <span class="icon">Python</span>
-            <span class="icon">React</span>
-            <span class="icon">Ruby</span>
-            <!-- Continue for other tech icons -->
-        </div>
-    </main>
+    <div class="tech-icons">
+      <span class="icon">AWS</span>
+      <span class="icon">Node JS</span>
+      <span class="icon">Python</span>
+      <span class="icon">React</span>
+      <span class="icon">Ruby</span>
+    </div>
+  </main>
 </body>
 </html>
-
