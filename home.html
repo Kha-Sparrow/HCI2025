@@ -19,11 +19,8 @@
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
-        .welcome {
+        h2 {
             text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 20px 0;
         }
         .tab {
             overflow: hidden;
@@ -48,11 +45,19 @@
             background-color: #5cb85c;
             color: white;
         }
+        .tabcontent p {
+            text-align: center;
+            font-size: 36px; /* Tăng kích thước chữ */
+            font-weight: bold; /* Làm chữ đậm */
+            margin: 20px 0; /* Khoảng cách trên và dưới */
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <h2>Welcome to the Home Page</h2>
+
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'home')">Home</button>
             <a href="about.html"><button class="tablinks">About</button></a> 
@@ -65,10 +70,8 @@
             <button class="tablinks" onclick="window.location.href='lab6.html'">Lab 6</button>
         </div>
 
-        <p class="welcome">Welcome to my website.</p>
-
         <div id="home" class="tabcontent">
-            <p>Explore the content of the home page!</p>
+            <p>Welcome to my website.</p>
         </div>
 
         <div id="about" class="tabcontent" style="display: none;">
