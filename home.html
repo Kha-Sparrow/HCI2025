@@ -45,22 +45,19 @@
             background-color: #5cb85c;
             color: white;
         }
-        .video-container {
+        .image-section {
             text-align: center;
             margin: 20px 0;
         }
-        .video-container iframe {
-            width: 80%;
-            max-width: 800px;
-            height: 450px;
-            border: none;
+        .image-section img {
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h2>Welcome to my website</h2>
 
@@ -76,16 +73,11 @@
             <button class="tablinks" onclick="window.location.href='lab6.html'">Lab 6</button>
         </div>
 
-        <!-- Thêm video YouTube ngay dưới menubar -->
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/watch?v=LPx7ERqFYM0" 
-                title="YouTube video player" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
+        <!-- Phần hình ảnh thay thế video -->
+        <div class="image-section">
+            <img src="https://blog.vietnovel.com/content/images/2020/04/_--5-.jpeg" alt="Description of image">
         </div>
-        
+
         <div id="about" class="tabcontent" style="display: none;">
             <h3>About Content</h3>
             <p>This platform allows students to solve coding exercises and improve their skills.</p>
@@ -107,6 +99,5 @@
             evt.currentTarget.className += " active";
         }
     </script>
-
 </body>
 </html>
