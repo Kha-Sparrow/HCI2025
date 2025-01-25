@@ -45,6 +45,16 @@
             background-color: #5cb85c;
             color: white;
         }
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .video-container video {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -62,6 +72,14 @@
             <button class="tablinks" onclick="window.location.href='lab4.html'">Lab 4</button>
             <button class="tablinks" onclick="window.location.href='lab5.html'">Lab 5</button>
             <button class="tablinks" onclick="window.location.href='lab6.html'">Lab 6</button>
+        </div>
+
+        <!-- Thêm video ngay dưới menubar -->
+        <div class="video-container">
+            <video controls>
+                <source src="https://www.youtube.com/watch?v=LPx7ERqFYM0" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         
         <div id="about" class="tabcontent" style="display: none;">
